@@ -1,4 +1,4 @@
-## CoinMenu
+## CoinMenu :moneybag:
 
 Menubar app to keep track of your Cryptocoins.  
 Build in Electron based on: https://github.com/maxogden/menubar/
@@ -11,7 +11,11 @@ Build in Electron based on: https://github.com/maxogden/menubar/
 - run `npm start` to run app from CLI without building Example.app
 
 
-###### API used: https://coinmarketcap.com/api/
+###### API used: https://coinmarketcap.com/api/  
+
 
 Created by Ronald Runia  
-Idea by Martijn de Haan (also collaborator)
+Idea by Martijn de Haan (@martijndeh) (also collaborator)  
+
+
+If you like it, We like BTC: 1FchJqo7frMkHGfTKMYEmrVChFYBcUiraS ;)
