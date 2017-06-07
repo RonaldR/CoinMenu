@@ -1,6 +1,6 @@
 ## CoinMenu
 
-Menubar app to keep track of your Cryptocoins.
+Menubar app to keep track of your Cryptocoins.  
 Build in Electron based on: https://github.com/maxogden/menubar/
 
 
@@ -14,4 +14,4 @@ Build in Electron based on: https://github.com/maxogden/menubar/
 ###### API used: https://coinmarketcap.com/api/
 
 Created by Ronald Runia  
-Idea by Martijn de Haan
+Idea by Martijn de Haan (also collaborator)
