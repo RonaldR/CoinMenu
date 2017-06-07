@@ -15,7 +15,7 @@ Build in Electron based on: https://github.com/maxogden/menubar/
 
 
 Created by Ronald Runia  
-Idea by Martijn de Haan (@martijndeh) (also collaborator)  
+Idea by Martijn de Haan (https://github.com/martijndeh) (also collaborator)  
 
 
 If you like it, We like BTC: 1FchJqo7frMkHGfTKMYEmrVChFYBcUiraS ;)
