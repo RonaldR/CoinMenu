@@ -1,0 +1,17 @@
+{
+  "name": "coin-menu",
+  "version": "0.0.1",
+  "description": "Cryptocoins in your menubar",
+  "dependencies": {
+    "menubar": "*"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.1",
+    "electron": "~1.6.2"
+  },
+  "main": "main.js",
+  "scripts": {
+    "build": "electron-packager . CoinMenu --platform=darwin --arch=x64  --overwrite",
+    "start": "electron ."
+  }
+}
