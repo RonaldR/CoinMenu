@@ -1,21 +1,19 @@
 ## CoinMenu :moneybag:
 
-Menubar app to keep track of your Cryptocoins.  
-Build in Electron based on: https://github.com/maxogden/menubar/
+Menubar app to keep track of your Bitcoin (BTC), Ether (ETH), DigiByte (DGB), Ripple (XRP) and other coins.
 
+If you like CoinMenu, we like:
 
-## instructions
+- BTC `1FchJqo7frMkHGfTKMYEmrVChFYBcUiraS`
+- DGB `DMHzEy84Tr5PKZ7QDEbZJLgL5hkTJZPA9r`
+- XRP `rGfD95GgQJHHq9rR8VVWoCLmKB1FqktrAB`
 
-- run `npm install`
-- run `npm run build` to make Example.app
-- run `npm start` to run app from CLI without building Example.app
+## Instructions
 
+- `npm install`
+- `npm start`
 
 ###### API used: https://coinmarketcap.com/api/  
 
-
-Created by Ronald Runia  
-Idea by Martijn de Haan (https://github.com/martijndeh) (also collaborator)  
-
-
-If you like it, We like BTC: 1FchJqo7frMkHGfTKMYEmrVChFYBcUiraS ;)
+Created by [Ronald Runia](https://github.com/RonaldR)
+Idea by [Martijn de Haan](https://github.com/martijndeh)
