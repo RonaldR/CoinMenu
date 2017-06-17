@@ -1,3 +1,8 @@
+// DEV
+// import {enableLiveReload} from 'electron-compile';
+// enableLiveReload();
+//
+
 import menubar from 'menubar';
 
 const menuBar = menubar({
@@ -7,5 +12,6 @@ const menuBar = menubar({
 });
 
 menuBar.on('ready', () => {
-    // menuBar.window.openDevTools();
+   // DEV
+  //  menuBar.window.openDevTools();
 });

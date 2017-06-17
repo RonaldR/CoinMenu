@@ -5,7 +5,16 @@ import Heading from '../../components/heading/index.js';
 import Currency from '../../components/currency/index.js';
 
 @injectSheet({
-	//
+	loadIcon: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)'
+	},
+	refreshed: {
+		fontSize: '.5rem',
+		padding: '1rem'
+	}
 })
 @inject('marketStore')
 @observer
@@ -21,7 +30,7 @@ export default class Settings extends Component {
 
 		if (currencies.length === 0) {
 			return (
-				<div>Loading...</div>
+				<div className={classes.loadIcon}><img src="./src/images/loading.svg" alt="Loading..." /></div>
 			);
 		}
 
@@ -33,7 +42,11 @@ export default class Settings extends Component {
 					);
 				})}
 
-				<p>Updated at {updatedAt.toString()}</p>
+				<p className={classes.refreshed}>
+					Updated at {updatedAt.toString()}
+					<br />
+					Data from: http://coinmarketcap.com (api)
+				</p>
 			</div>
 		);
 	}

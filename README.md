@@ -16,4 +16,4 @@ If you like CoinMenu, we like:
 ###### API used: https://coinmarketcap.com/api/  
 
 Created by [Ronald Runia](https://github.com/RonaldR)
-Idea by [Martijn de Haan](https://github.com/martijndeh)
+Idea and contribution by [Martijn de Haan](https://github.com/martijndeh)

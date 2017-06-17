@@ -8,6 +8,7 @@ const VISIBLE_CURRENCIES = [
 	'ETH',
 	'XRP',
 	'DGB',
+	'LTC'
 ];
 
 export default class MarketStore {
