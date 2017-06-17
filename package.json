@@ -2,8 +2,12 @@
   "name": "coin-menu",
   "version": "0.0.1",
   "description": "Cryptocoins in your menubar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RonaldR/CoinMenu.git"
+  },
+  "license": "MIT",
   "dependencies": {
-    "electron-compile": "^6.4.1",
     "menubar": "^5.2.3",
     "autobind-decorator": "^1.4.1",
     "classnames": "^2.2.5",
@@ -17,9 +21,6 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "electron": "~1.6.2",
-    "electron-compilers": "^5.9.0",
-    "electron-packager": "^8.7.1",
     "babel-plugin-mobx-deep-action": "^1.5.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -27,7 +28,9 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1"
+    "babel-preset-stage-3": "^6.24.1",
+    "electron-packager": "^8.7.1",
+    "electron-prebuilt-compile": "1.6.11"
   },
   "main": "index.js",
   "scripts": {
