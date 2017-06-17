@@ -30,7 +30,7 @@ export default class Settings extends Component {
 
 		if (currencies.length === 0) {
 			return (
-				<div className={classes.loadIcon}><img src="./src/images/loading.svg" alt="Loading..." /></div>
+				<div className={classes.loadIcon}><img src="./images/loading.svg" alt="Loading..." /></div>
 			);
 		}
 
