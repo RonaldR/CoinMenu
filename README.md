@@ -4,7 +4,7 @@ Menubar app to keep track of your Bitcoin (BTC), Ether (ETH), DigiByte (DGB), Ri
 
 If you like CoinMenu, we like:
 
-- BTC `1FchJqo7frMkHGfTKMYEmrVChFYBcUiraS`
+- BTC `1P6a8ue7EySkA4QQDrhhbNLcguNBFNHtEK`
 - DGB `DMHzEy84Tr5PKZ7QDEbZJLgL5hkTJZPA9r`
 - XRP `rGfD95GgQJHHq9rR8VVWoCLmKB1FqktrAB`
 
