@@ -8,7 +8,7 @@ import classNames from 'classnames';
 		overflow: 'hidden',
 		marginLeft: '1rem',
 		padding: '.5rem 1rem .5rem 0',
-		borderBottom: '1px solid rgba(255, 255, 255, 0.25)',
+		borderBottom: '1px solid rgba(0, 0, 0, 0.25)',
 		display: 'flex',
 		alignItems: 'center'
 	},

@@ -3,7 +3,6 @@
 // enableLiveReload();
 //
 
-
 var path = require('path');
 
 import menubar from 'menubar';
@@ -20,7 +19,6 @@ const menuBar = menubar({
 
 menuBar.on('ready', () => {
    // DEV
-   console.log(__dirname);
-   console.log('app is ready')
-   menuBar.window.openDevTools();
+  //  console.log('app is ready')
+  //  menuBar.window.openDevTools();
 });

@@ -18,6 +18,7 @@ export default class MarketStore {
 	timer = null;
 
 	@action.bound async startLoadingCurrencies() {
+		console.log('startLoadingCurrencies ' + new Date());
 		const response = await fetch(API_URL);
 
 		if (response.ok) {
@@ -27,8 +28,6 @@ export default class MarketStore {
 			this.allCurrencies = json;
 			this.currencies = this.allCurrencies.filter((currency) => VISIBLE_CURRENCIES.indexOf(currency.symbol) !== -1);
 
-			this.timer = setTimeout(this.startLoadingCurrencies, REFRESH_INTERVAL);
-
 			// TODO: Check the change and send a notification if Math.abs(percent_change_24h) > 10
 
 			/*
@@ -37,6 +36,8 @@ export default class MarketStore {
 			});
 			*/
 		}
+
+		this.timer = setTimeout(this.startLoadingCurrencies, REFRESH_INTERVAL);
 	}
 
 	stopLoadingCurrencies() {

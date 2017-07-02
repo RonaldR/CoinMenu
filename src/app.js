@@ -25,7 +25,7 @@ const stores = {
 			margin: 0,
 			padding: 0,
 			fontSize: '16px',
-			backgroundColor: '#4BAAE9',
+			// backgroundColor: '#4BAAE9',
 			fontFamily: 'Avenir Next, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif',
 		},
 	},

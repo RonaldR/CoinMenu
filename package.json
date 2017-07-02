@@ -1,6 +1,6 @@
 {
   "name": "coin-menu",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cryptocoins in your menubar",
   "repository": {
     "type": "git",
@@ -63,7 +63,9 @@
       "electronInstallerRedhat": {},
       "github_repository": {
         "owner": "RonaldR",
-        "name": "CoinMenu"
+        "name": "CoinMenu",
+        "prerelease": true,
+        "draft": false
       },
       "windowsStoreConfig": {
         "packageName": ""
