@@ -1,0 +1,36 @@
+th,
+td {
+  padding: 8px 12px 8px 0;
+  text-align: left;
+}
+
+.coinlist {
+  margin-bottom: 16px;
+}
+
+.coin-add {
+  width: 300px;
+  padding: 8px;
+}
+
+.refreshed {
+  margin-top: 48px;
+}
+
+.refreshed,
+.coinmarketcap {
+  display: block;
+}
+
+.remove-link {
+  color: red;
+  text-decoration: none;
+}
+
+.percent-change-24h.positive {
+  color: green;
+}
+
+.percent-change-24h.negative {
+  color: red;
+}
