@@ -1,6 +1,6 @@
 {
   "name": "coin-menu",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Cryptocoins in your menubar",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "@vue/cli-plugin-babel": "^3.0.0-alpha.10",
     "@vue/cli-plugin-eslint": "^3.0.0-alpha.10",
     "@vue/cli-service": "^3.0.0-alpha.10",
-    "electron-prebuilt-compile": "1.6.11",
+    "electron-prebuilt-compile": "1.8.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13"

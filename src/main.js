@@ -3,10 +3,9 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-new Vue({
+window.app = new Vue({
   render: h => h(App)
-}).$mount('#app')
-
+}).$mount('#app');
 
 // https://coinmarketcap.com/api/
 // https://api.coinmarketcap.com/v1/ticker/?limit=10

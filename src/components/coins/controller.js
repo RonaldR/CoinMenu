@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-let timeout = null;
+let interval = null;
 
 export default {
   name: 'coins',
@@ -88,7 +88,8 @@ export default {
     this.getCoins();
 
     // refresh every 60 sec
-    setInterval(() => {
+    clearInterval(interval);
+    interval = setInterval(() => {
       this.getCoins();
     }, 60000);
   }

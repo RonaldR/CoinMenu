@@ -5,6 +5,7 @@
 
 const path = require('path');
 import menubar from 'menubar';
+const {app} = require('electron');
 
 const menuBar = menubar({
     preloadWindow: true,
@@ -13,11 +14,16 @@ const menuBar = menubar({
     dir: __dirname,
     icon: path.join(__dirname, 'IconTemplate.png'),
     index: path.join('file://', __dirname, '../dist/index.html'),
-    tooltip: 'Hi! I am CoinMenu',
+    tooltip: 'CoinMenu',
 });
 
 menuBar.on('ready', () => {
-   // DEV
-    //console.log('app is ready')
-    //menuBar.window.openDevTools();
+  // DEV
+  //console.log('app is ready')
+  //menuBar.window.openDevTools();
+
+  // focussed event listener, to refresh on focus.
+  app.on('browser-window-focus', () => {
+    menuBar.window.webContents.send('focussed', 'true');
+  });
 });
