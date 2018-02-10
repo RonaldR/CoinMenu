@@ -2,6 +2,8 @@
 
 Menubar app to keep track of your Bitcoin (BTC), Ether (ETH), LiteCoin (LTC), SmartCash (Smart) and all other coins.
 
+<img src="https://raw.githubusercontent.com/RonaldR/CoinMenu/master/screenshot.png" width="320">
+
 If you like CoinMenu, we like:
 
 - BTC `13xB6FVUfDRJfDuUCqWnZzaStaMXSbiHgp`
