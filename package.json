@@ -12,7 +12,8 @@
     "electron-compile": "^6.4.1",
     "menubar": "^5.2.3",
     "moment": "^2.20.1",
-    "vue": "^2.5.13"
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-alpha.10",

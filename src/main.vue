@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <coins />
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import coins from './components/coins/coins.vue'
-
 export default {
-  name: 'app',
-  components: {
-    coins
-  }
+  name: 'app'
 }
 </script>
 
@@ -31,5 +28,18 @@ body {
 a {
   color: #2c3e50;
   text-decoration: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .2s;
+}
+
+.fade-enter-active {
+  transition-delay: .2s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>

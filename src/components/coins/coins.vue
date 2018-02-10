@@ -53,6 +53,7 @@
             placeholder="BTC or BTC,NEO,SMART" />
 
     <small class="refreshed">Last refresh: {{ refreshDate }}</small>
+    <small class="fright"><router-link to="/about">about</router-link></small>
     <small class="coinmarketcap">Data: coinmarketcap.com</small>
   </div>
 </template>

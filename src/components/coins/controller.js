@@ -61,7 +61,7 @@ export default {
             this.coins = coinData.filter(item => personalCoinList.indexOf(item.symbol) !== -1);
           }
 
-          this.refreshDate = moment().format('DD-MM-YYYY, hh:mm:ss');
+          this.refreshDate = moment().format('DD-MM-YYYY, HH:mm:ss');
         })
         .catch((error) => {
           console.log(error);
@@ -72,6 +72,7 @@ export default {
       console.log('remove:',symbol);
       let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
       let index = personalCoinList.indexOf(symbol);
+
       if (index > -1) {
         delete personalCoinList[ index ];
         localStorage.setItem("personalCoinList", JSON.stringify(personalCoinList));
@@ -87,10 +88,10 @@ export default {
   mounted() {
     this.getCoins();
 
-    // refresh every 60 sec
+    // refresh every 120 sec, this function is also called on focus.
     clearInterval(interval);
     interval = setInterval(() => {
       this.getCoins();
-    }, 60000);
+    }, 120000);
   }
 };
