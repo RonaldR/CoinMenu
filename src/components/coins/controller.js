@@ -5,13 +5,12 @@ let timeout = null;
 
 export default {
   name: 'coins',
-  props: {
-    addcoin: ''
-  },
   data() {
     return {
       coins: [],
-      refreshDate: ''
+      refreshDate: '',
+      addcoin: '',
+      currency: 'dollar'
     }
   },
   methods: {
@@ -80,6 +79,9 @@ export default {
         // refresh coin list
         this.getCoins();
       }
+    },
+    switchCurrency: function(currency) {
+      this.currency = currency;
     }
   },
   mounted() {
