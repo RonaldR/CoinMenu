@@ -71,6 +71,13 @@ export default {
     remove: function(symbol) {
       console.log('remove:',symbol);
       let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
+      
+      if (!personalCoinList) {
+        // If there is no personal coin list yet, and the user removes one from the list,
+        // we simply create a personalCoinList from all the coins so that remove works.
+        personalCoinList = this.coins.map(coin => coin.symbol);
+      }
+      
       let index = personalCoinList.indexOf(symbol);
 
       if (index > -1) {
