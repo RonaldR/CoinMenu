@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",
-    "electron-compile": "^6.4.1",
+    "electron-compile": "^6.4.2",
     "menubar": "^5.2.3",
     "moment": "^2.20.1",
     "vue": "^2.5.13",
@@ -17,9 +17,9 @@
     "vue2-filters": "^0.3.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-alpha.10",
-    "@vue/cli-plugin-eslint": "^3.0.0-alpha.10",
-    "@vue/cli-service": "^3.0.0-alpha.10",
+    "@vue/cli-plugin-babel": "^3.0.0-beta.1",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.1",
+    "@vue/cli-service": "^3.0.0-beta.1",
     "electron-prebuilt-compile": "1.8.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
