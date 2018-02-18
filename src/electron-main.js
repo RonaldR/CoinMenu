@@ -9,21 +9,26 @@ const {app} = require('electron');
 
 const menuBar = menubar({
     preloadWindow: true,
-    width: 380,
+    width: 400,
     height: 320,
     dir: __dirname,
-    icon: path.join(__dirname, 'IconTemplate.png'),
+    icon: path.join(__dirname, 'icon.png'),
     index: path.join('file://', __dirname, '../dist/index.html'),
     tooltip: 'CoinMenu',
+});
+
+menuBar.on('show', () => {
+  //menuBar.window.app.$children[0].$children[0].getCoins();
+
+  menuBar.window.webContents.send('focussed', 'true');
+
+  menuBar.window.setVibrancy('ultra-dark');
+  // menuBar.window.setBackgroundColor("#000");
+  menuBar.window.setOpacity(0.99);
 });
 
 menuBar.on('ready', () => {
   // DEV
   //console.log('app is ready')
   //menuBar.window.openDevTools();
-
-  // focussed event listener, to refresh on focus.
-  app.on('browser-window-focus', () => {
-    menuBar.window.webContents.send('focussed', 'true');
-  });
 });

@@ -15,8 +15,8 @@ If you like CoinMenu, we like:
 ## Instructions
 
 - `npm install`
-- `npm serve` to run vue app in browser
-- `npm start` to run vue app in menubar/elector
+- `npm run serve` to run vue app in browser
+- `npm run build` `npm run start` to run the app in menubar/electon
 
 ###### API used: https://coinmarketcap.com/api/  
 

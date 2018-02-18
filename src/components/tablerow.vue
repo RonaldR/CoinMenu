@@ -1,0 +1,125 @@
+<template>
+  <tr>
+    <td class="coinlist__coin-short">
+      <a :href="'https://coinmarketcap.com/currencies/' + coin.id" target="_blank">
+        {{ coin.symbol }}
+      </a>
+    </td>
+    <td class="coinlist__coin">
+      <a :href="'https://coinmarketcap.com/currencies/' + coin.id" target="_blank">
+        {{ coin.name }}
+      </a>
+    </td>
+    <td class="coinlist__percent-change-24h right"
+       :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
+      {{ coin.percent_change_24h }}%
+    </td>
+    <td class="coinlist__price">
+      <span v-if="currency === 'dollar'">
+        {{ coin.price_usd | currency('$', 3, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+      </span>
+      <span v-if="currency === 'euro'">
+        {{ coin.price_eur | currency('€', 3, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+      </span>
+      <span v-if="currency === 'btc'">
+        {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+      </span>
+    </td>
+    <td class="coinlist__delete right">
+      <a href="#" class="remove-link" @click="remove(coin.symbol)">x</a>
+    </td>
+  </tr>
+</template>
+
+<script>
+export default {
+  name: 'tablerow',
+  props: {
+    'coins': {
+      type: Array,
+      required: true
+    },
+    'coin': {
+      type: Object,
+      required: true
+    },
+    'currency': {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    remove: function(symbol) {
+      console.log('remove:',symbol);
+
+      let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
+
+      if (!personalCoinList || personalCoinList.length < 1) {
+        // If there is no personal coin list yet, and the user removes one from the list,
+        // we simply create a personalCoinList from all the coins so that remove works.
+        personalCoinList = this.coins.map(coin => coin.symbol);
+      }
+
+      let index = personalCoinList.indexOf(symbol);
+
+      if (index > -1) {
+        personalCoinList.splice(index, 1);
+        localStorage.setItem("personalCoinList", JSON.stringify(personalCoinList));
+
+        // refresh coin list
+        this.$parent.getCoins();
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.coinlist__coin {
+  min-width: 110px;
+
+  a {
+    color: #888;
+  }
+
+  img {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.coinlist__price {
+  text-align: right;
+}
+
+.coinlist__percent-change-24h {
+  position: relative;
+  padding-right: 24px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    right: 6px;
+    display: block;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+  }
+
+  &.positive {
+    color: #00CA7F;
+
+    &:after {
+      background-image: url('../assets/icons/positive.svg');
+    }
+  }
+  &.negative {
+    color: #FF504F;
+
+    &:after {
+      background-image: url('../assets/icons/negative.svg');
+    }
+  }
+}
+</style>

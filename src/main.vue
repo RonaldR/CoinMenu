@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
@@ -12,22 +12,45 @@ export default {
 }
 </script>
 
-<style>
-body {
-  background: #fff;
+<style lang="scss">
+html,body {
+  background: black; //transparent;
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #fff;
   margin-top: 0;
 }
 
 a {
-  color: #2c3e50;
+  color: #fff;
   text-decoration: none;
+}
+
+th,
+td {
+  padding: 8px 8px 8px 0;
+  text-align: left;
+}
+
+th {
+  color: #888888;
+  font-weight: normal;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right !important;
+}
+
+.fright {
+  float: right;
 }
 
 .fade-enter-active, .fade-leave-active {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Price down icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Coin-Tracker-App---Dark---7" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-413.000000, -186.000000)">
+        <g id="Group-3" transform="translate(173.000000, 183.000000)" fill="#FF504F">
+            <g id="Price-change-/-Down" transform="translate(185.000000, 0.000000)">
+                <path d="M61.9339918,5.2590039 L61.9339918,16.7928932 L60.3396571,16.7928932 L60.3396571,5.2590039 L56.6273649,8.97129607 L55.5,7.84393119 L61.1368244,2.20710678 L62.2641893,3.33447166 L66.7736488,7.84393119 L65.6462839,8.97129607 L61.9339918,5.2590039 Z" id="Price-down-icon" transform="translate(61.136824, 9.500000) rotate(-225.000000) translate(-61.136824, -9.500000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
