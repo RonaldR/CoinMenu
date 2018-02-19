@@ -6,12 +6,3 @@ module.exports = {
     }
   }
 }
-
-
-/*
-
-"babel": {
-  "presets": [
-    "@vue/app"
-  ]
-},*/

@@ -122,4 +122,9 @@ export default {
     }
   }
 }
+
+.remove-link {
+  color: red;
+  text-decoration: none;
+}
 </style>

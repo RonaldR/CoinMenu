@@ -18,12 +18,9 @@ const menuBar = menubar({
 });
 
 menuBar.on('show', () => {
-  //menuBar.window.app.$children[0].$children[0].getCoins();
-
   menuBar.window.webContents.send('focussed', 'true');
 
   menuBar.window.setVibrancy('ultra-dark');
-  // menuBar.window.setBackgroundColor("#000");
   menuBar.window.setOpacity(0.99);
 });
 

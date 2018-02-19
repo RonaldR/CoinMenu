@@ -1,6 +1,6 @@
 {
   "name": "coin-menu",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Cryptocoins in your menubar",
   "repository": {
     "type": "git",
@@ -65,7 +65,10 @@
           "rpm"
         ]
       },
-      "electronPackagerConfig": {},
+      "electronPackagerConfig": {
+        "icon": "./src/assets/icons/icon.icns",
+        "cwd": "./dist"
+      },
       "electronWinstallerConfig": {
         "name": ""
       },

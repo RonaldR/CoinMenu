@@ -4,7 +4,6 @@ import VueRouter from 'vue-router';
 import Vue2Filters from 'vue2-filters';
 import coins from './components/coins.vue';
 import about from './components/about.vue';
-import settings from './components/settings.vue';
 
 Vue.config.productionTip = false;
 
@@ -13,8 +12,7 @@ Vue.use(Vue2Filters);
 
 const routes = [
   { path: '/', component: coins },
-  { path: '/about', component: about },
-  { path: '/settings', component: settings }
+  { path: '/about', component: about }
 ];
 
 const router = new VueRouter({

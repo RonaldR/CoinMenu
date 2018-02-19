@@ -14,11 +14,19 @@ export default {
 
 <style lang="scss">
 html,body {
-  background: black; //transparent;
+  background: transparent;
+}
+
+body {
+  margin: 0 8px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #app {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #fff;

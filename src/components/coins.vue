@@ -24,6 +24,8 @@
       <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" />
     </table>
 
+    <addcoin />
+
     <foot :refresh-date="refreshDate" />
   </div>
 </template>
@@ -33,12 +35,14 @@ import axios from 'axios';
 import moment from 'moment';
 import tablerow from './tablerow';
 import foot from './foot';
+import addcoin from './addcoin';
 
 export default {
   name: 'coins',
   components: {
     tablerow,
-    foot
+    foot,
+    addcoin
   },
   data() {
     return {
@@ -130,11 +134,6 @@ td {
   &.active {
     cursor: default;
   }
-}
-
-.remove-link {
-  color: red;
-  text-decoration: none;
 }
 
 .header {

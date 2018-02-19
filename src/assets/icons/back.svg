@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="14px" viewBox="0 0 8 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Price up</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Coin-Tracker-App---Dark---8" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-122.000000, -51.000000)">
+        <g id="Group" transform="translate(115.000000, 46.000000)" fill="#FFFFFF">
+            <path d="M12.3333333,9 L17.6666667,14.3333333 L16.3333333,15.6666667 L11,10.3333333 L5.66666667,15.6666667 L4.33333333,14.3333333 L11,7.66666667 L12.3333333,9 Z" id="Price-up" transform="translate(11.000000, 11.666667) rotate(-90.000000) translate(-11.000000, -11.666667) "></path>
+        </g>
+    </g>
+</svg>

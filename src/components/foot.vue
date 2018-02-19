@@ -9,7 +9,6 @@
       Last update: {{ refreshDate }}</small>
 
     <small class="fright"> <router-link to="/about"> about </router-link> </small>
-    <small class="fright"> <router-link to="/settings"> settings </router-link> </small>
   </footer>
 </template>
 

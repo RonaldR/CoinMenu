@@ -1,30 +1,17 @@
 <template>
-  <div>
-    Settings
-
-    <label for="addcoins">Add your coin(s)</label>
-    <br />
-    <input id="addcoins" type="text" class="coin-add"
+  <div class="addcoins-wrapper">
+    <input id="addcoins" type="text" class="addcoin-input"
             @keyup.enter="addCoins" v-model="addcoin"
             placeholder="BTC or BTC,NEO,SMART" />
-
-    <div class="statusLabel">
-      {{ statusLabel }}
-    </div>
-
-    <a href="#" @click="deleteList()">Clear your coinlist</a>
-    <br />
-
-    <router-link to="/">Go back</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'settings',
+  name: 'addcoin',
   data() {
     return {
-      'statusLabel': ''
+      addcoin: ''
     }
   },
   methods: {
@@ -54,21 +41,40 @@ export default {
         this.addcoin = '';
 
         // refresh coin list
-        //this.$parent.getCoins();
-
-        this.statusLabel = 'Added: ' + coinsToAdd;
+        this.$parent.getCoins();
       }
-    },
-    deleteList: function() {
-      localStorage.removeItem('personalCoinList');
-      this.statusLabel = 'List cleared';
     }
   }
 }
 </script>
 
-<style scoped>
-.statusLabel {
-  margin: 24px 0;
+<style lang="scss" scoped>
+.addcoins-wrapper {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  width: 100%;
+  margin-top: 8px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url('../assets/icons/add.svg') no-repeat center;
+  }
+}
+
+.addcoin-input {
+  background: transparent;
+  width: 100%;
+  padding: 16px 16px 16px 32px;
+  border: 0;
+  outline: none;
+  color: white;
+  font-size: 14px;
 }
 </style>
