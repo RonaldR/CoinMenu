@@ -30,17 +30,19 @@ export default {
   },
   methods: {
     refresh: function() {
+      // refresh the coin data (on click)
       this.$parent.getCoins();
       this.getGlobalData();
     },
     getGlobalData: function() {
+      // get global coin data like the total market cap
       axios.get('https://api.coinmarketcap.com/v1/global/?convert=EUR')
         .then((response) => {
           this.globalData = response.data;
         })
         .catch((error) => {
           console.log(error);
-          this.globalData = null;
+          this.globalData = null; // reset
         });
     }
   },

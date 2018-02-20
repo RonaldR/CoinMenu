@@ -15,10 +15,11 @@ export default {
 <style lang="scss">
 html,body {
   background: transparent;
+  font-size: 14px;
 }
 
 body {
-  margin: 0 8px;
+  margin: 0 16px;
 }
 
 * {
@@ -36,6 +37,7 @@ body {
 a {
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
 }
 
 th,
@@ -61,9 +63,9 @@ th {
   float: right;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition-property: opacity;
-  transition-duration: .2s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s linear;
 }
 
 .fade-enter-active {

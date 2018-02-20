@@ -11,7 +11,7 @@ export default {
   name: 'addcoin',
   data() {
     return {
-      addcoin: ''
+      addcoin: '' // v-model
     }
   },
   methods: {
@@ -40,7 +40,7 @@ export default {
         // clear input
         this.addcoin = '';
 
-        // refresh coin list
+        // refresh coin list in parent component
         this.$parent.getCoins();
       }
     }

@@ -8,7 +8,7 @@ import about from './components/about.vue';
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
-Vue.use(Vue2Filters);
+Vue.use(Vue2Filters); // vue filters, using for displaying currency
 
 const routes = [
   { path: '/', component: coins },
@@ -16,7 +16,14 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) { // scrolls to top on route change
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 });
 
 window.app = new Vue({

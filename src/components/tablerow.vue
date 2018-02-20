@@ -1,5 +1,12 @@
 <template>
   <tr>
+    <transition name="fade">
+      <td class="coinlist__delete" v-if="editMode">
+        <a href="#" class="remove-link" @click="remove(coin.symbol)">
+          <img src="../assets/icons/remove.svg" />
+        </a>
+      </td>
+    </transition>
     <td class="coinlist__coin-short">
       <a :href="'https://coinmarketcap.com/currencies/' + coin.id" target="_blank">
         {{ coin.symbol }}
@@ -13,6 +20,8 @@
     <td class="coinlist__percent-change-24h right"
        :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
       {{ coin.percent_change_24h }}%
+      <img src="../assets/icons/positive.svg" v-if="coin.percent_change_24h >= 0" />
+      <img src="../assets/icons/negative.svg" v-if="coin.percent_change_24h < 0" />
     </td>
     <td class="coinlist__price">
       <span v-if="currency === 'dollar'">
@@ -24,9 +33,6 @@
       <span v-if="currency === 'btc'">
         {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
       </span>
-    </td>
-    <td class="coinlist__delete right">
-      <a href="#" class="remove-link" @click="remove(coin.symbol)">x</a>
     </td>
   </tr>
 </template>
@@ -46,12 +52,14 @@ export default {
     'currency': {
       type: String,
       required: true
+    },
+    'editMode': {
+      type: Boolean,
+      required: true
     }
   },
   methods: {
     remove: function(symbol) {
-      console.log('remove:',symbol);
-
       let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
 
       if (!personalCoinList || personalCoinList.length < 1) {
@@ -60,13 +68,15 @@ export default {
         personalCoinList = this.coins.map(coin => coin.symbol);
       }
 
+      // get coin symbol from list
       let index = personalCoinList.indexOf(symbol);
 
+      // if found remove and store in local storage
       if (index > -1) {
         personalCoinList.splice(index, 1);
         localStorage.setItem("personalCoinList", JSON.stringify(personalCoinList));
 
-        // refresh coin list
+        // refresh coin list in parent component
         this.$parent.getCoins();
       }
     }
@@ -90,13 +100,14 @@ export default {
 
 .coinlist__price {
   text-align: right;
+  min-width: 92px;
 }
 
 .coinlist__percent-change-24h {
   position: relative;
   padding-right: 24px;
 
-  &:after {
+  img {
     content: '';
     position: absolute;
     top: 11px;
@@ -109,17 +120,9 @@ export default {
 
   &.positive {
     color: #00CA7F;
-
-    &:after {
-      background-image: url('../assets/icons/positive.svg');
-    }
   }
   &.negative {
     color: #FF504F;
-
-    &:after {
-      background-image: url('../assets/icons/negative.svg');
-    }
   }
 }
 

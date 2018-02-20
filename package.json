@@ -17,9 +17,9 @@
     "vue2-filters": "^0.3.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.1",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.1",
-    "@vue/cli-service": "^3.0.0-beta.1",
+    "@vue/cli-plugin-babel": "^3.0.0-alpha.10",
+    "@vue/cli-plugin-eslint": "^3.0.0-alpha.10",
+    "@vue/cli-service": "^3.0.0-alpha.10",
     "electron-prebuilt-compile": "1.8.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
@@ -58,21 +58,32 @@
           "squirrel"
         ],
         "darwin": [
-          "zip"
+          "dmg"
         ],
         "linux": [
-          "deb",
-          "rpm"
+          "deb"
         ]
       },
       "electronPackagerConfig": {
-        "icon": "./src/assets/icons/icon.icns",
-        "cwd": "./dist"
+        "icon": "./src/assets/icons/icon.icns"
       },
       "electronWinstallerConfig": {
-        "name": ""
+        "name": "CoinMenu",
+        "appDirectory": "./",
+        "authors": "Ronald Runia",
+        "iconUrl": "icon.ico",
+        "setupIcon": "icon.ico"
       },
-      "electronInstallerDebian": {},
+      "electronInstallerDebian": {
+        "dest": "out/installers/",
+        "icon": "src/assets/icons/icon.icns",
+        "categories": [
+          "Utility"
+        ],
+        "lintianOverrides": [
+          "changelog-file-missing-in-native-package"
+        ]
+      },
       "electronInstallerRedhat": {},
       "github_repository": {
         "owner": "RonaldR",

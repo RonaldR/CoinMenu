@@ -19,13 +19,14 @@ const menuBar = menubar({
 
 menuBar.on('show', () => {
   menuBar.window.webContents.send('focussed', 'true');
-
-  menuBar.window.setVibrancy('ultra-dark');
-  menuBar.window.setOpacity(0.99);
 });
 
 menuBar.on('ready', () => {
   // DEV
-  //console.log('app is ready')
-  //menuBar.window.openDevTools();
+  // console.log('app is ready')
+  // menuBar.window.openDevTools();
+
+  menuBar.window.setVibrancy('ultra-dark');
+  menuBar.window.setOpacity(0.99);
+  menuBar.window.setResizable(false);
 });

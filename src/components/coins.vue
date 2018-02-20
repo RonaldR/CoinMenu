@@ -12,19 +12,28 @@
         <span class="currency" :class="{ active: currency === 'euro' }" @click="switchCurrency('euro')">EUR</span>
         <span class="currency" :class="{ active: currency === 'btc' }" @click="switchCurrency('btc')">BTC</span>
       </div>
+
+      <div class="header__edit-button">
+        <a @click="toggleEditMode()" :class="{ editMode: editMode }">{{ editButtonLabel }}</a>
+      </div>
     </div>
 
-    <table id="coinlist" class="coinlist">
-      <tr>
-        <th colspan="2">Coin</th>
-        <th class="right">24h %</th>
-        <th class="right">Latest price</th>
-        <th class="right"></th>
-      </tr>
-      <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" />
-    </table>
 
-    <addcoin />
+
+      <table id="coinlist" class="coinlist">
+        <tr>
+          <transition name="fade"><th class="coinlist__delete" v-if="editMode"></th></transition>
+          <th colspan="2">Coin</th>
+          <th class="right">24h %</th>
+          <th class="right">Latest price</th>
+          <th class="right"></th>
+        </tr>
+        <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
+      </table>
+
+    <transition name="fade">
+      <addcoin v-if="editMode" />
+    </transition>
 
     <foot :refresh-date="refreshDate" />
   </div>
@@ -49,18 +58,24 @@ export default {
       coins: [],
       refreshDate: '',
       addcoin: '',
-      currency: 'dollar'
+      currency: 'dollar',
+      editMode: false,
+      editButtonLabel: 'Edit'
     }
   },
   methods: {
     getCoins: function() {
+      // coinmarketcap api url
       let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR';
+
       const personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
 
+      // if no personal coin list, get the top 10
       if (!personalCoinList || personalCoinList.length < 1) {
         url += '&limit=10';
       }
 
+      // fetch the data
       axios.get(url)
         .then((response) => {
           const coinData = response.data;
@@ -68,18 +83,30 @@ export default {
           if (!personalCoinList || personalCoinList.length < 1) {
             this.coins = coinData;
           } else {
+            // only the once in the personal list
             this.coins = coinData.filter(item => personalCoinList.indexOf(item.symbol) !== -1);
           }
 
+          // update the date
           this.refreshDate = moment().format('DD-MM-YYYY HH:mm:ss');
         })
         .catch((error) => {
           console.log(error);
-          this.coins = null;
+          this.coins = null; // reset on error
         });
     },
     switchCurrency: function(currency) {
+      // dollar, euro or btc
       this.currency = currency;
+    },
+    toggleEditMode: function() {
+      this.editMode = !this.editMode;
+
+      if (this.editMode) {
+        this.editButtonLabel = 'Done';
+      } else {
+        this.editButtonLabel = 'Edit';
+      }
     }
   },
   mounted() {
@@ -140,7 +167,7 @@ td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
+  padding: 12px 0 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
@@ -151,5 +178,22 @@ td {
 
 .header__logo {
   margin-right: 12px;
+}
+
+.header__edit-button {
+  a {
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    background: #353535;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 3px;
+    min-width: 50px;
+    text-align: center;
+
+    &.editMode {
+      background: #2E8DFF;
+    }
+  }
 }
 </style>
