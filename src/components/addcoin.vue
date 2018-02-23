@@ -64,7 +64,7 @@ export default {
     display: inline-block;
     width: 16px;
     height: 16px;
-    background: url('../assets/icons/add.svg') no-repeat center;
+    background: url(../assets/icons/add.svg) no-repeat center;
   }
 }
 

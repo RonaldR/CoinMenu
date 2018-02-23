@@ -18,24 +18,24 @@
       </div>
     </div>
 
-
-
-      <table id="coinlist" class="coinlist">
-        <tr>
-          <transition name="fade"><th class="coinlist__delete" v-if="editMode"></th></transition>
-          <th colspan="2">Coin</th>
-          <th class="right">24h %</th>
-          <th class="right">Latest price</th>
-          <th class="right"></th>
-        </tr>
-        <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
-      </table>
+    <table id="coinlist" class="coinlist">
+      <tr>
+        <transition name="fade">
+          <th class="coinlist__delete" v-if="editMode"></th>
+        </transition>
+        <th colspan="2">Coin</th>
+        <th class="right">24h %</th>
+        <th class="right">Latest price</th>
+      </tr>
+      <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
+    </table>
 
     <transition name="fade">
       <addcoin v-if="editMode" />
     </transition>
 
     <foot :refresh-date="refreshDate" />
+
   </div>
 </template>
 
@@ -101,12 +101,7 @@ export default {
     },
     toggleEditMode: function() {
       this.editMode = !this.editMode;
-
-      if (this.editMode) {
-        this.editButtonLabel = 'Done';
-      } else {
-        this.editButtonLabel = 'Edit';
-      }
+      this.editButtonLabel = this.editMode ?  'Done' : 'Edit';
     }
   },
   mounted() {
@@ -126,6 +121,7 @@ td {
 
 .coinlist {
   margin-bottom: 16px;
+  width: 100%;
 }
 
 .currency {

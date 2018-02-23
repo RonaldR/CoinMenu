@@ -44,6 +44,10 @@ th,
 td {
   padding: 8px 8px 8px 0;
   text-align: left;
+
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 th {

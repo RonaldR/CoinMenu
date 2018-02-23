@@ -1,8 +1,3 @@
-// DEV
-// import {enableLiveReload} from 'electron-compile';
-// enableLiveReload();
-//
-
 const path = require('path');
 import menubar from 'menubar';
 const {app} = require('electron');
@@ -10,13 +5,14 @@ const {app} = require('electron');
 const menuBar = menubar({
     preloadWindow: true,
     width: 400,
-    height: 320,
+    height: 340,
     dir: __dirname,
     icon: path.join(__dirname, 'icon.png'),
     index: path.join('file://', __dirname, '../dist/index.html'),
     tooltip: 'CoinMenu',
 });
 
+// show event, trigger focussed to refresh the data
 menuBar.on('show', () => {
   menuBar.window.webContents.send('focussed', 'true');
 });

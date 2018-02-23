@@ -1,6 +1,6 @@
 {
   "name": "coin-menu",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Cryptocoins in your menubar",
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "main": "src/electron-main.js",
   "scripts": {
     "start": "electron .",
+    "start-build": "vue-cli-service build && electron .",
     "start-forge": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
