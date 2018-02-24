@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss">
 html,body {
-  background: transparent;
+  background: black;
   font-size: 14px;
 }
 
@@ -42,7 +42,6 @@ a {
 
 th,
 td {
-  padding: 8px 8px 8px 0;
   text-align: left;
 
   &:last-child {
@@ -53,6 +52,12 @@ td {
 th {
   color: #888888;
   font-weight: normal;
+  padding: 12px 8px 12px 0;
+}
+
+td {
+  padding: 4px 8px 4px 0;
+  vertical-align: top;
 }
 
 .center {

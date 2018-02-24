@@ -10,11 +10,13 @@
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <script>
+      // focussed event listener, to refresh on focus.
+      window.electron = require('electron');
+      window.electron.ipcRenderer.on('focussed', function(event, message) {
+        window.app.$children[0].$children[0].getCoins();
+      });
+    </script>
   </body>
-  <script>
-    // focussed event listener, to refresh on focus.
-    require('electron').ipcRenderer.on('focussed', function(event, message) {
-      window.app.$children[0].$children[0].getCoins();
-    });
-  </script>
 </html>

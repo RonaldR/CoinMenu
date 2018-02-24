@@ -4,13 +4,12 @@
     <div class="header">
       <div class="header__logo-title">
         <img src="../assets/logo.svg" class="header__logo" />
-        <span class="header__title">CoinMenu</span>
+        <span class="header__title">Coin menu</span>
       </div>
 
       <div class="header__currency-switcher">
         <span class="currency" :class="{ active: currency === 'dollar' }" @click="switchCurrency('dollar')">USD</span>
         <span class="currency" :class="{ active: currency === 'euro' }" @click="switchCurrency('euro')">EUR</span>
-        <span class="currency" :class="{ active: currency === 'btc' }" @click="switchCurrency('btc')">BTC</span>
       </div>
 
       <div class="header__edit-button">

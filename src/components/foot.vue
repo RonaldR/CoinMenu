@@ -5,7 +5,7 @@
       {{ globalData.total_market_cap_usd | currency('$', 0, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
     </small>
     <small>
-      <a href="#" @click="refresh()" class="refresh"><img src="../assets/icons/refresh.svg" /></a>
+      <a @click="refresh()" class="refresh"><img src="../assets/icons/refresh.svg" /></a>
       Last update: {{ refreshDate }}</small>
 
     <small class="fright"> <router-link to="/about"> about </router-link> </small>

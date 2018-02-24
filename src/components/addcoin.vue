@@ -58,7 +58,7 @@ export default {
   &:before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 2px;
     top: 50%;
     transform: translateY(-50%);
     display: inline-block;

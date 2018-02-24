@@ -2,18 +2,18 @@
   <tr>
     <transition name="fade">
       <td class="coinlist__delete" v-if="editMode">
-        <a href="#" class="remove-link" @click="remove(coin.symbol)">
+        <a class="remove-link" @click="remove(coin.symbol)">
           <img src="../assets/icons/remove.svg" />
         </a>
       </td>
     </transition>
     <td class="coinlist__coin-short">
-      <a :href="'https://coinmarketcap.com/currencies/' + coin.id" target="_blank">
+      <a @click="openExternalLink('https://coinmarketcap.com/currencies/' + coin.id)" target="_blank">
         {{ coin.symbol }}
       </a>
     </td>
     <td class="coinlist__coin">
-      <a :href="'https://coinmarketcap.com/currencies/' + coin.id" target="_blank">
+      <a @click="openExternalLink('https://coinmarketcap.com/currencies/' + coin.id)" target="_blank">
         {{ coin.name }}
       </a>
     </td>
@@ -26,18 +26,23 @@
     <td class="coinlist__price">
       <span v-if="currency === 'dollar'">
         {{ coin.price_usd | currency('$', 3, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        <small class="coinlist__btc-price">
+          {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        </small>
       </span>
       <span v-if="currency === 'euro'">
         {{ coin.price_eur | currency('€', 3, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
-      </span>
-      <span v-if="currency === 'btc'">
-        {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        <small class="coinlist__btc-price">
+          {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        </small>
       </span>
     </td>
   </tr>
 </template>
 
 <script>
+import mixins from '../mixins';
+
 export default {
   name: 'tablerow',
   props: {
@@ -58,6 +63,7 @@ export default {
       required: true
     }
   },
+  mixins: [mixins],
   methods: {
     remove: function(symbol) {
       let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
@@ -110,7 +116,7 @@ export default {
   img {
     content: '';
     position: absolute;
-    top: 11px;
+    top: 8px;
     right: 6px;
     display: block;
     width: 14px;
@@ -124,6 +130,12 @@ export default {
   &.negative {
     color: #FF504F;
   }
+}
+
+.coinlist__btc-price {
+  display: block;
+  color: #888;
+  font-size: 10px;
 }
 
 .remove-link {

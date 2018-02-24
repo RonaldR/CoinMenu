@@ -8,7 +8,7 @@
           <img src="../assets/logo.svg" />
         </div>
         <div class="about__title">
-          CoinMenu
+          Coin menu <span class="about__version">{{ version }}</span>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
 
       <br />
       <p>
-        <a href="https://github.com/RonaldR/CoinMenu" target="_blank">
+        <a @click="openExternalLink('https://github.com/RonaldR/CoinMenu')" target="_blank">
           If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀 
            <br /><br />
           You can also contribute to the project by doing a pull request.
@@ -56,8 +56,16 @@
 
 
 <script>
+import mixins from '../mixins';
+
 export default {
-  name: 'about'
+  name: 'about',
+  mixins: [mixins],
+  data() {
+    return {
+      version: require('../../package.json').version
+    }
+  }
 }
 </script>
 
