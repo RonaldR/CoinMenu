@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss">
 html,body {
-  background: black;
+  background: transparent;
   font-size: 14px;
 }
 

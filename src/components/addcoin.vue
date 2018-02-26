@@ -1,5 +1,6 @@
 <template>
   <div class="addcoins-wrapper">
+    <img class="icon" src="../assets/icons/add.svg">
     <input id="addcoins" type="text" class="addcoin-input"
             @keyup.enter="addCoins" v-model="addcoin"
             placeholder="BTC or BTC,NEO,SMART" />
@@ -55,7 +56,7 @@ export default {
   margin-top: 8px;
   position: relative;
 
-  &:before {
+  .icon {
     content: '';
     position: absolute;
     left: 2px;
@@ -64,7 +65,6 @@ export default {
     display: inline-block;
     width: 16px;
     height: 16px;
-    background: url(../assets/icons/add.svg) no-repeat center;
   }
 }
 
