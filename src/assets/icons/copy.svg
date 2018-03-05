@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Coin-Tracker-App---Dark---8" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-488.000000, -368.000000)" opacity="0.56">
+        <g id="Group-2" transform="translate(181.000000, 360.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M314.636364,8 L308.090909,8 C307.490909,8 307,8.49090909 307,9.09090909 L307,16.7272727 L308.090909,16.7272727 L308.090909,9.09090909 L314.636364,9.09090909 L314.636364,8 Z M316.272727,10.1818182 L310.272727,10.1818182 C309.672727,10.1818182 309.181818,10.6727273 309.181818,11.2727273 L309.181818,18.9090909 C309.181818,19.5090909 309.672727,20 310.272727,20 L316.272727,20 C316.872727,20 317.363636,19.5090909 317.363636,18.9090909 L317.363636,11.2727273 C317.363636,10.6727273 316.872727,10.1818182 316.272727,10.1818182 Z M316.272727,18.9090909 L310.272727,18.9090909 L310.272727,11.2727273 L316.272727,11.2727273 L316.272727,18.9090909 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

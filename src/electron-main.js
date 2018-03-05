@@ -4,8 +4,8 @@ const {app} = require('electron');
 
 const menuBar = menubar({
     preloadWindow: true,
-    width: 400,
-    height: 360,
+    width: 420,
+    height: 380,
     dir: __dirname,
     icon: path.join(__dirname, 'icon.png'),
     index: path.join('file://', __dirname, '../dist/index.html'),

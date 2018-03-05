@@ -13,6 +13,7 @@
     "menubar": "^5.2.3",
     "moment": "^2.20.1",
     "vue": "^2.5.13",
+    "vue-clipboard2": "0.0.9",
     "vue-router": "^3.0.1",
     "vue2-filters": "^0.3.0"
   },

@@ -12,11 +12,18 @@
     <!-- built files will be auto injected -->
 
     <script>
+      // create easy access to electron
+      let { remote, electron } = require('electron');
+
+      window.electronRemote = remote;
+      window.electron = electron;
+
       // focussed event listener, to refresh on focus.
-      window.electron = require('electron');
       window.electron.ipcRenderer.on('focussed', function(event, message) {
         window.app.$children[0].$children[0].getCoins();
       });
     </script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>

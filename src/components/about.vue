@@ -31,6 +31,14 @@
             Bob van Aubel
           </div>
         </div>
+        <div class="credits__column">
+          <div class="credits__title">
+            LOGO DESIGN BY
+          </div>
+          <div class="credits__name">
+            Pasquale Willemstein
+          </div>
+        </div>
       </div>
 
       <br />
@@ -43,17 +51,41 @@
         <br />
       </p>
 
-      <br />
-      <p>
-        <small class="coinmarketcap">Data: coinmarketcap.com ❤️</small>
-        <br />
-        <small class="coinmarketcap">App idea by: Martijn de Haan</small>
-        <br />
-      </p>
+      <ul class="donations">
+        <li class="donations__list-item">
+          <span class="donations__label">BTC</span>
+          <a v-clipboard:copy="`13xB6FVUfDRJfDuUCqWnZzaStaMXSbiHgp`" class="donations__address">
+            13xB6FVUfDRJfDuUCqWnZzaStaMXSbiHgp
+            <img src="../assets/icons/copy.svg" class="donations__copy-icon" />
+          </a>
+        </li>
+        <li class="donations__list-item">
+          <span class="donations__label">ETH</span>
+          <a v-clipboard:copy="`0xf774c2148235d20FD5E6c22b86BBd78A1f5E872F`" class="donations__address">
+            0xf774c2148235d20FD5E6c22b86BBd78A1f5E872F
+            <img src="../assets/icons/copy.svg" class="donations__copy-icon" />
+          </a>
+        </li>
+        <li class="donations__list-item">
+          <span class="donations__label">LTC</span>
+          <a v-clipboard:copy="`LM2GNo5koDWfJAuidw8dXCLuTEoHLhMQhQ`" class="donations__address">
+            LM2GNo5koDWfJAuidw8dXCLuTEoHLhMQhQ
+            <img src="../assets/icons/copy.svg" class="donations__copy-icon" />
+          </a>
+        </li>
+      </ul>
+
+      <footer class="footer">
+        <p>
+          <small class="coinmarketcap">Data: coinmarketcap.com ❤️</small>
+          <br />
+          <small class="coinmarketcap">App idea by: Martijn de Haan</small>
+        </p>
+      </footer>
     </div>
+
   </div>
 </template>
-
 
 <script>
 import mixins from '../mixins';
@@ -65,6 +97,12 @@ export default {
     return {
       version: require('../../package.json').version
     }
+  },
+  created() {
+    window.electronRemote.getCurrentWindow().setSize(600, 450, true);
+  },
+  destroyed() {
+    window.electronRemote.getCurrentWindow().setSize(420, 380, true);
   }
 }
 </script>
@@ -103,17 +141,62 @@ export default {
   }
 }
 
+.donations {
+  margin: 32px 0 24px 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 0;
+  }
+
+  .donations__address {
+    margin-left: 8px;
+    padding: 3px 4px;
+    border-radius: 3px;
+    background: #2E8DFF;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      background: lighten(#2E8DFF, 10%);
+    }
+
+    &:active {
+      background: darken(#2E8DFF, 10%);
+    }
+  }
+
+  .donations__list-item {
+    margin: 16px 0;
+  }
+
+  .donations__label {
+    display: inline-block;
+    width: 40px;
+  }
+
+  .donations__copy-icon {
+    margin: 0 8px;
+  }
+}
+
 .credits {
   width: 100%;
 }
 
 .credits__column {
-  width: 49%;
+  width: 32%;
   display: inline-block;
 }
 
 .credits__title {
   color: #2E8DFF;
   font-size: 12px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
