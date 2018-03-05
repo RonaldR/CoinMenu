@@ -119,6 +119,7 @@ td {
 }
 
 .coinlist {
+  margin-top: 54px;
   margin-bottom: 16px;
   width: 100%;
 }
@@ -159,6 +160,10 @@ td {
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 16px;
+  right: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
