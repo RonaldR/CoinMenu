@@ -15,8 +15,8 @@
       <br />
       <p>
         <a @click="openExternalLink('https://github.com/RonaldR/CoinMenu')" target="_blank">
-          If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀 
-           <br /><br />
+          If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀
+          <br /><br />
           You can also contribute to the project by doing a pull request.
         </a>
         <br />

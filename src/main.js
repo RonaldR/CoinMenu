@@ -5,7 +5,6 @@ import router from './router';
 // import store from './store';
 
 // 3th party
-import VueRouter from 'vue-router';
 import Vue2Filters from 'vue2-filters';
 import VueClipboard from 'vue-clipboard2';
 

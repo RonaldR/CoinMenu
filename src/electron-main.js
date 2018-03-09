@@ -1,6 +1,5 @@
 const path = require('path');
 import menubar from 'menubar';
-const {app} = require('electron');
 
 const menuBar = menubar({
     preloadWindow: true,
