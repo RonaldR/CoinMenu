@@ -22,23 +22,23 @@ import axios from 'axios';
 export default {
   name: 'foot',
   props: {
-    'refreshDate': {
+    refreshDate: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      globalData: {}
-    }
+      globalData: {},
+    };
   },
   methods: {
-    refresh: function() {
+    refresh() {
       // refresh the coin data (on click)
       this.$parent.getCoins();
       this.getGlobalData();
     },
-    getGlobalData: function() {
+    getGlobalData() {
       // get global coin data like the total market cap
       axios.get('https://api.coinmarketcap.com/v1/global/?convert=EUR')
         .then((response) => {
@@ -48,12 +48,12 @@ export default {
           console.log(error);
           this.globalData = null; // reset
         });
-    }
+    },
   },
   mounted() {
     this.getGlobalData();
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

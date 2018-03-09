@@ -103,16 +103,16 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      version: require('../../package.json').version
-    }
+      version: require('../../package.json').version,
+    };
   },
   created() {
     window.electronRemote.getCurrentWindow().setSize(600, 450, true);
   },
   destroyed() {
     window.electronRemote.getCurrentWindow().setSize(500, 380, true);
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

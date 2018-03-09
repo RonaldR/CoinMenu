@@ -15,7 +15,7 @@ Vue.use(Vue2Filters); // vue filters, using for displaying currency
 Vue.use(VueClipboard); // A simple vuejs 2 binding for clipboard.js
 
 window.app = new Vue({
-  router: router,
+  router,
   // store,
-  render: h => h(main)
+  render: h => h(main),
 }).$mount('#app');

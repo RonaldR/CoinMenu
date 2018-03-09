@@ -22,11 +22,12 @@
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
     "@vue/cli-plugin-e2e-cypress": "^3.0.0-beta.6",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.6",
-    "@vue/cli-plugin-unit-mocha": "^3.0.0-beta.6",
+    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.6",
     "@vue/cli-service": "^3.0.0-beta.6",
     "@vue/eslint-config-airbnb": "^3.0.0-beta.6",
     "@vue/test-utils": "^1.0.0-beta.10",
-    "chai": "^4.1.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.0.4",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13",
@@ -45,17 +46,6 @@
     "e2e": "vue-cli-service e2e",
     "lint": "vue-cli-service lint",
     "e2e:open": "vue-cli-service e2e:open"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ]
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
   },
   "browserslist": [
     "> 1%",

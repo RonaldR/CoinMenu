@@ -1,14 +1,15 @@
 const path = require('path');
+
 import menubar from 'menubar';
 
 const menuBar = menubar({
-    preloadWindow: true,
-    width: 500,
-    height: 380,
-    dir: __dirname,
-    icon: path.join(__dirname, 'icon.png'),
-    index: path.join('file://', __dirname, '../dist/index.html'),
-    tooltip: 'CoinMenu',
+  preloadWindow: true,
+  width: 500,
+  height: 380,
+  dir: __dirname,
+  icon: path.join(__dirname, 'icon.png'),
+  index: path.join('file://', __dirname, '../dist/index.html'),
+  tooltip: 'CoinMenu',
 });
 
 // show event, trigger focussed to refresh the data

@@ -12,28 +12,26 @@ export default {
   name: 'addcoin',
   data() {
     return {
-      addcoin: '' // v-model
-    }
+      addcoin: '', // v-model
+    };
   },
   methods: {
-    addCoins: function() {
+    addCoins() {
       // get coin from input
       const coinsToAdd = this.addcoin.toUpperCase();
-      if(coinsToAdd.length > 1) {
+      if (coinsToAdd.length > 1) {
         // get localStorage
-        let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
+        let personalCoinList = JSON.parse(localStorage.getItem('personalCoinList'));
 
         // add to list
         if (personalCoinList) {
-          personalCoinList = personalCoinList.concat(coinsToAdd.split(","));
+          personalCoinList = personalCoinList.concat(coinsToAdd.split(','));
         } else {
-          personalCoinList = coinsToAdd.split(",");
+          personalCoinList = coinsToAdd.split(',');
         }
 
         // remove duplicates
-        personalCoinList = personalCoinList.filter(function(item, pos) {
-            return personalCoinList.indexOf(item) == pos;
-        });
+        personalCoinList = personalCoinList.filter((item, pos) => personalCoinList.indexOf(item) == pos);
 
         // save to localStorage
         localStorage.setItem('personalCoinList', JSON.stringify(personalCoinList));
@@ -44,9 +42,9 @@ export default {
         // refresh coin list in parent component
         this.$parent.getCoins();
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

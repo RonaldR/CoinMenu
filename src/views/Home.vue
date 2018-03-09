@@ -41,16 +41,16 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
-import tablerow from '@/components/tablerow';
-import foot from '@/components/foot';
-import addcoin from '@/components/addcoin';
+import tablerow from '@/components/Tablerow';
+import foot from '@/components/Foot';
+import addcoin from '@/components/Addcoin';
 
 export default {
   name: 'home',
   components: {
     tablerow,
     foot,
-    addcoin
+    addcoin,
   },
   data() {
     return {
@@ -59,15 +59,15 @@ export default {
       addcoin: '',
       currency: 'dollar',
       editMode: false,
-      editButtonLabel: 'Edit'
-    }
+      editButtonLabel: 'Edit',
+    };
   },
   methods: {
-    getCoins: function() {
+    getCoins() {
       // coinmarketcap api url
       let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=2000';
 
-      const personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
+      const personalCoinList = JSON.parse(localStorage.getItem('personalCoinList'));
 
       // if no personal coin list, get the top 10
       if (!personalCoinList || personalCoinList.length < 1) {
@@ -94,18 +94,18 @@ export default {
           this.coins = null; // reset on error
         });
     },
-    switchCurrency: function(currency) {
+    switchCurrency(currency) {
       // dollar, euro or btc
       this.currency = currency;
     },
-    toggleEditMode: function() {
+    toggleEditMode() {
       this.editMode = !this.editMode;
-      this.editButtonLabel = this.editMode ?  'Done' : 'Edit';
-    }
+      this.editButtonLabel = this.editMode ? 'Done' : 'Edit';
+    },
   },
   mounted() {
     this.getCoins();
-  }
+  },
 };
 </script>
 

@@ -47,27 +47,27 @@ import mixins from '../mixins';
 export default {
   name: 'tablerow',
   props: {
-    'coins': {
+    coins: {
       type: Array,
-      required: true
+      required: true,
     },
-    'coin': {
+    coin: {
       type: Object,
-      required: true
+      required: true,
     },
-    'currency': {
+    currency: {
       type: String,
-      required: true
+      required: true,
     },
-    'editMode': {
+    editMode: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   mixins: [mixins],
   methods: {
-    remove: function(symbol) {
-      let personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
+    remove(symbol) {
+      let personalCoinList = JSON.parse(localStorage.getItem('personalCoinList'));
 
       if (!personalCoinList || personalCoinList.length < 1) {
         // If there is no personal coin list yet, and the user removes one from the list,
@@ -76,19 +76,19 @@ export default {
       }
 
       // get coin symbol from list
-      let index = personalCoinList.indexOf(symbol);
+      const index = personalCoinList.indexOf(symbol);
 
       // if found remove and store in local storage
       if (index > -1) {
         personalCoinList.splice(index, 1);
-        localStorage.setItem("personalCoinList", JSON.stringify(personalCoinList));
+        localStorage.setItem('personalCoinList', JSON.stringify(personalCoinList));
 
         // refresh coin list in parent component
         this.$parent.getCoins();
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
