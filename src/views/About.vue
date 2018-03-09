@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <router-link to="/" class="back-button"><img src="../assets/icons/back.svg" /></router-link>
+    <router-link to="/" class="back-button"><img src="@/assets/icons/back.svg" /></router-link>
 
     <div class="about-content">
       <div class="about__title-wrapper">
@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import mixins from '../mixins';
+import mixins from '@/mixins';
 
 export default {
   name: 'about',

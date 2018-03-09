@@ -41,12 +41,12 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
-import tablerow from './tablerow';
-import foot from './foot';
-import addcoin from './addcoin';
+import tablerow from '@/components/tablerow';
+import foot from '@/components/foot';
+import addcoin from '@/components/addcoin';
 
 export default {
-  name: 'coins',
+  name: 'home',
   components: {
     tablerow,
     foot,
