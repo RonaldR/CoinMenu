@@ -1,14 +1,18 @@
 <template>
   <footer class="footer">
-    <small class="refreshed">
-      Total market cap:
-      {{ globalData.total_market_cap_usd | currency('$', 0, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
-    </small>
     <small>
       <a @click="refresh()" class="refresh"><img src="../assets/icons/refresh.svg" /></a>
-      Last update: {{ refreshDate }}</small>
+      Updated at: {{ refreshDate }}
+    </small>
 
-    <small class="fright"> <router-link to="/about"> about </router-link> </small>
+    <small class="refreshed">
+      Market cap:
+      {{ globalData.total_market_cap_usd | currency('$', 0, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+    </small>
+
+    <small>
+      <router-link to="/about" class="about-link"> about </router-link>
+    </small>
   </footer>
 </template>
 
@@ -80,9 +84,16 @@ export default {
   }
 }
 
+.about-link {
+  color: #888;
+}
+
 .footer {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding: 16px 0;
   color: #888;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

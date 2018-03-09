@@ -10,18 +10,13 @@
     <td class="coinlist__coin-short">
       <a @click="openExternalLink('https://coinmarketcap.com/currencies/' + coin.id)" target="_blank">
         {{ coin.symbol }}
+        <small class="coinlist__coin">
+          {{ coin.name }}
+        </small>
       </a>
     </td>
-    <td class="coinlist__coin">
-      <a @click="openExternalLink('https://coinmarketcap.com/currencies/' + coin.id)" target="_blank">
-        {{ coin.name }}
-      </a>
-    </td>
-    <td class="coinlist__percent-change-24h right"
-       :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
-      {{ coin.percent_change_24h }}%
-      <img src="../assets/icons/positive.svg" v-if="coin.percent_change_24h >= 0" />
-      <img src="../assets/icons/negative.svg" v-if="coin.percent_change_24h < 0" />
+    <td class="coinlist__holding">
+      &nbsp;
     </td>
     <td class="coinlist__price">
       <span v-if="currency === 'dollar'">
@@ -36,6 +31,12 @@
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
       </span>
+    </td>
+    <td class="coinlist__percent-change-24h right"
+       :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
+      {{ coin.percent_change_24h }}%
+      <img src="../assets/icons/positive.svg" v-if="coin.percent_change_24h >= 0" />
+      <img src="../assets/icons/negative.svg" v-if="coin.percent_change_24h < 0" />
     </td>
   </tr>
 </template>
@@ -92,16 +93,9 @@ export default {
 
 <style lang="scss" scoped>
 .coinlist__coin {
-  min-width: 110px;
-
-  a {
-    color: #888;
-  }
-
-  img {
-    position: relative;
-    top: 2px;
-  }
+  display: block;
+  color: #888;
+  font-size: 14px;
 }
 
 .coinlist__price {
@@ -135,11 +129,13 @@ export default {
 .coinlist__btc-price {
   display: block;
   color: #888;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .remove-link {
   color: red;
   text-decoration: none;
+  position: relative;
+  top: 2px;
 }
 </style>

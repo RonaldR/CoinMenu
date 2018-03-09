@@ -14,12 +14,12 @@ export default {
 
 <style lang="scss">
 html,body {
-  background: transparent;
   font-size: 14px;
 }
 
 body {
   margin: 0 16px;
+  background: rgba(21,21,21,.93);
 }
 
 * {

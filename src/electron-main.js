@@ -4,7 +4,7 @@ const {app} = require('electron');
 
 const menuBar = menubar({
     preloadWindow: true,
-    width: 420,
+    width: 500,
     height: 380,
     dir: __dirname,
     icon: path.join(__dirname, 'icon.png'),
@@ -23,6 +23,6 @@ menuBar.on('ready', () => {
   // menuBar.window.openDevTools();
   menuBar.window.setResizable(false);
 
-  menuBar.window.setVibrancy('ultra-dark');
+  // menuBar.window.setVibrancy('ultra-dark'); // electron transparency bug titlebarAppearsTransparent
   menuBar.window.setOpacity(0.99);
 });

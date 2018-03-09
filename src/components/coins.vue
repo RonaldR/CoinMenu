@@ -22,9 +22,10 @@
         <transition name="fade">
           <th class="coinlist__delete" v-if="editMode"></th>
         </transition>
-        <th colspan="2">Coin</th>
-        <th class="right">24h %</th>
+        <th>Coin</th>
+        <th class="right">Holdings</th>
         <th class="right">Latest price</th>
+        <th class="right">24h %</th>
       </tr>
       <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
     </table>
@@ -34,7 +35,6 @@
     </transition>
 
     <foot :refresh-date="refreshDate" />
-
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
   methods: {
     getCoins: function() {
       // coinmarketcap api url
-      let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR';
+      let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=2000';
 
       const personalCoinList = JSON.parse(localStorage.getItem("personalCoinList"));
 
@@ -162,13 +162,15 @@ td {
 .header {
   position: fixed;
   top: 0;
-  left: 16px;
-  right: 16px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0 14px 0;
+  padding: 12px 16px 14px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.12);
+  background: rgba(21,21,21,.93);
 }
 
 .header__logo-title {

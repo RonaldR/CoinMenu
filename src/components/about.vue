@@ -13,35 +13,6 @@
       </div>
 
       <br />
-
-      <div class="credits">
-        <div class="credits__column">
-          <div class="credits__title">
-            CREATED BY
-          </div>
-          <div class="credits__name">
-            Ronald Runia
-          </div>
-        </div>
-        <div class="credits__column">
-          <div class="credits__title">
-            DESIGNED BY
-          </div>
-          <div class="credits__name">
-            Bob van Aubel
-          </div>
-        </div>
-        <div class="credits__column">
-          <div class="credits__title">
-            LOGO DESIGN BY
-          </div>
-          <div class="credits__name">
-            Pasquale Willemstein
-          </div>
-        </div>
-      </div>
-
-      <br />
       <p>
         <a @click="openExternalLink('https://github.com/RonaldR/CoinMenu')" target="_blank">
           If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀 
@@ -75,13 +46,50 @@
         </li>
       </ul>
 
-      <footer class="footer">
-        <p>
-          <small class="coinmarketcap">Data: coinmarketcap.com ❤️</small>
-          <br />
-          <small class="coinmarketcap">App idea by: Martijn de Haan</small>
-        </p>
-      </footer>
+      <br />
+
+      <div class="credits">
+        <div class="credits__column">
+          <div class="credits__title">
+            CREATED BY
+          </div>
+          <div class="credits__name">
+            Ronald Runia
+          </div>
+        </div>
+        <div class="credits__column">
+          <div class="credits__title">
+            DESIGNED BY
+          </div>
+          <div class="credits__name">
+            Bob van Aubel
+          </div>
+        </div>
+        <div class="credits__column">
+          <div class="credits__title">
+            LOGO BY
+          </div>
+          <div class="credits__name">
+            Pasquale Willemstein
+          </div>
+        </div>
+        <div class="credits__column">
+          <div class="credits__title">
+            APP IDEA
+          </div>
+          <div class="credits__name">
+            Martijn de Haan
+          </div>
+        </div>
+        <div class="credits__column">
+          <div class="credits__title">
+            DATA
+          </div>
+          <div class="credits__name">
+            coinmarketcap.com ❤️
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -102,7 +110,7 @@ export default {
     window.electronRemote.getCurrentWindow().setSize(600, 450, true);
   },
   destroyed() {
-    window.electronRemote.getCurrentWindow().setSize(420, 380, true);
+    window.electronRemote.getCurrentWindow().setSize(500, 380, true);
   }
 }
 </script>
@@ -187,6 +195,7 @@ export default {
 .credits__column {
   width: 32%;
   display: inline-block;
+  margin-bottom: 24px;
 }
 
 .credits__title {
