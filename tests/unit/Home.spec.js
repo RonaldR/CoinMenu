@@ -1,7 +1,7 @@
 // import { shallow } from '@vue/test-utils';
 import Home from '@/views/Home.vue';
 
-describe('About.vue', () => {
+describe('Home.vue', () => {
   // Inspect the raw component options
   it('has a mounted hook', () => {
     expect(typeof Home.mounted).toBe('function');

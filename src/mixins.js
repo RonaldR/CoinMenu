@@ -7,6 +7,8 @@ export default {
       if (window.electron && window.electron.shell) {
         window.electron.shell.openExternal(url);
       }
+
+      return false;
     },
   },
 };

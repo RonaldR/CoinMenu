@@ -28,10 +28,11 @@
     "@vue/test-utils": "^1.0.0-beta.10",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.0.4",
+    "codacy-coverage": "^2.1.0",
+    "electron-prebuilt-compile": "1.8.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13",
-    "electron-prebuilt-compile": "1.8.2"
+    "vue-template-compiler": "^2.5.13"
   },
   "main": "src/electron-main.js",
   "scripts": {
@@ -43,6 +44,7 @@
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test",
+    "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c",
     "e2e": "vue-cli-service e2e",
     "lint": "vue-cli-service lint",
     "e2e:open": "vue-cli-service e2e:open"
