@@ -1,5 +1,10 @@
 ## CoinMenu :moneybag:
 
+
+[![vue 2](https://img.shields.io/badge/vue-2-42b983.svg)](https://vuejs.org)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fd38be335a554ce08a6752dab1100cd3)](https://www.codacy.com/app/RonaldR/CoinMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RonaldR/CoinMenu&amp;utm_campaign=Badge_Grade)
+
+
 With this menubar app you can keep track of your Bitcoin (BTC), Ether (ETH), LiteCoin (LTC), SmartCash (Smart) and all other coins.
 
 <img src="https://raw.githubusercontent.com/RonaldR/CoinMenu/master/screenshot.png" width="320">
@@ -29,6 +34,3 @@ You can also contribute to the project by doing a pull request. Please do.
 Created by [Ronald Runia](https://github.com/RonaldR)  
 Design by [Bob van Aubel](https://github.com/bobvaubel)  
 Idea and contribution by [Martijn de Haan](https://github.com/martijndeh)
-
-
-[![vue 2](https://img.shields.io/badge/vue-2-42b983.svg?style=flat-square)](https://vuejs.org)
