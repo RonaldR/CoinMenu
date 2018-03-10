@@ -107,7 +107,7 @@ export default {
     };
   },
   created() {
-    window.electronRemote.getCurrentWindow().setSize(600, 450, true);
+    window.electronRemote.getCurrentWindow().setSize(600, 480, true);
   },
   destroyed() {
     window.electronRemote.getCurrentWindow().setSize(500, 380, true);

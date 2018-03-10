@@ -23,7 +23,7 @@
           <th class="coinlist__delete" v-if="editMode"></th>
         </transition>
         <th>Coin</th>
-        <th class="right">Holdings</th>
+        <th class="right">&nbsp;</th>
         <th class="right">Latest price</th>
         <th class="right">24h %</th>
       </tr>
