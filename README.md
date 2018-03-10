@@ -2,7 +2,7 @@
 
 
 [![vue 2](https://img.shields.io/badge/vue-2-42b983.svg)](https://vuejs.org)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fd38be335a554ce08a6752dab1100cd3)](https://www.codacy.com/app/RonaldR/CoinMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RonaldR/CoinMenu&amp;utm_campaign=Badge_Grade)
+![Codacy Badge](https://api.codacy.com/project/badge/Grade/fd38be335a554ce08a6752dab1100cd3)
 
 
 With this menubar app you can keep track of your Bitcoin (BTC), Ether (ETH), LiteCoin (LTC), SmartCash (Smart) and all other coins.
