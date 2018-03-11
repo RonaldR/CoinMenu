@@ -33,4 +33,6 @@ You can also contribute to the project by doing a pull request. Please do.
 
 Created by [Ronald Runia](https://github.com/RonaldR)  
 Design by [Bob van Aubel](https://github.com/bobvaubel)  
-Idea and contribution by [Martijn de Haan](https://github.com/martijndeh)
+Idea and contribution by [Martijn de Haan](https://github.com/martijndeh)  
+
+http://moneyrain.nl
