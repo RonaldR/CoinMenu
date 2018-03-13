@@ -13,10 +13,10 @@
 
     <script>
       // create easy access to electron
-      let { remote, electron } = require('electron');
+      let electron = require('electron');
 
-      window.electronRemote = remote;
-      window.electron = electron;
+      window.electronRemote = electron.remote; // used for resizing the window in about.vue
+      window.electron = electron; // used for focussed event
 
       // focussed event listener, to refresh on focus.
       window.electron.ipcRenderer.on('focussed', function(event, message) {
