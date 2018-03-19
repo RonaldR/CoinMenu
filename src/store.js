@@ -20,6 +20,12 @@ export default new Vuex.Store({
         }
       }));
     },
+    getHoldingAmount: (state) => (coinSymbol) => {
+      let coin = state.personalCoinList.find(coin => coin && coin.symbol && coin.symbol === coinSymbol);
+      if (coin) {
+        return coin.holding;
+      }
+    }
   },
   mutations: {
     createCoinList: (state, coinList) => { // create coin list with objects
@@ -55,6 +61,14 @@ export default new Vuex.Store({
     },
     removeCoin: (state, symbol) => {
       state.personalCoinList = state.personalCoinList.filter(coin => coin.symbol !== symbol);
+      // save to localStorage
+      localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
+    },
+    saveHoldingAmount: (state, obj) => {
+      let coin = state.personalCoinList.find(coin => coin.symbol === obj.symbol);
+      if (coin) {
+        coin.holding = obj.holdingAmount;
+      }
       // save to localStorage
       localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
     }

@@ -2,7 +2,7 @@
   <tr>
     <transition name="fade">
       <td class="coinlist__delete" v-if="editMode">
-        <a class="remove-link" @click="remove(coin.symbol)">
+        <a class="remove-link" @click="remove()">
           <img src="../assets/icons/remove.svg" />
         </a>
       </td>
@@ -18,27 +18,27 @@
     </td>
 
     <td class="coinlist__holding">
-      <div v-if="! editMode && coinList[index].holding">
+      <div v-if="! editMode && holding">
         <div class="coinlist__holding-price">
           <span v-if="currency === 'dollar'">
-            {{ coinList[index].holding * coin.price_usd | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ holding * coin.price_usd | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
           </span>
 
           <span v-if="currency === 'euro'">
-            {{ coinList[index].holding * coin.price_eur | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ holding * coin.price_eur | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
           </span>
         </div>
 
         <div class="coinlist__holding-amount">
-          {{ coinList[index].holding }}
+          {{ holding }}
         </div>
       </div>
 
       <input v-if="editMode" type="number"  step="0.1"
             class="coinlist__holding-input"
-            v-model="coinList[index].holding"
-            @keyup="saveHolding()"
-            placeholder="Add the amount your holding" />
+            v-model="holding"
+            @keyup="saveHoldingAmount()"
+            placeholder="Amount your holding" />
     </td>
 
     <td class="coinlist__price">
@@ -91,28 +91,23 @@ export default {
       required: true,
     },
   },
-  computed: {
-    coinList () {
-      return this.$store.getters.getPersonalCoinList; // v-model for holding amount
-    }
+  data() {
+    return {
+      holding: this.$store.getters.getHoldingAmount(this.coin.symbol)
+    };
   },
   mixins: [mixins],
   methods: {
-    remove(symbol) {
+    remove() {
       // filter out the coin to remove
-      this.$store.commit('removeCoin', symbol);
-
+      this.$store.commit('removeCoin', this.coin.symbol);
+      // refresh
       this.$parent.getCoins();
     },
-    saveHolding() {
-      // save the holding model
-      localStorage.setItem('personalCoinList', JSON.stringify(this.coinList));
+    saveHoldingAmount() {
+      this.$store.commit('saveHoldingAmount', { symbol: this.coin.symbol, holdingAmount: this.holding });
     }
-  },
-  created() {
-    // set coinlist model for holding input
-    this.coinList = this.$store.getters.getPersonalCoinList;
-  },
+  }
 };
 </script>
 

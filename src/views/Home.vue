@@ -74,6 +74,8 @@ export default {
         url += '&limit=10';
       }
 
+      this.coins = null;
+
       // fetch the data
       axios.get(url)
         .then((response) => {
@@ -106,7 +108,7 @@ export default {
     toggleEditMode() {
       this.editMode = !this.editMode;
       this.editButtonLabel = this.editMode ? 'Done' : 'Edit';
-      this.coins = this.$store.getters.getCoinListWithHoldings(coinData);
+      this.getCoins();
     },
   },
   mounted() {
