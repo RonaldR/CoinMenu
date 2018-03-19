@@ -7,6 +7,7 @@
         </a>
       </td>
     </transition>
+
     <td class="coinlist__coin-short">
       <a @click="openExternalLink('https://coinmarketcap.com/currencies/' + coin.id)" target="_blank">
         {{ coin.symbol }}
@@ -15,25 +16,48 @@
         </small>
       </a>
     </td>
+
     <td class="coinlist__holding">
-      &nbsp;
+      <div v-if="! editMode && coinList[index].holding">
+        <div class="coinlist__holding-price">
+          <span v-if="currency === 'dollar'">
+            {{ coinList[index].holding * coin.price_usd | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+          </span>
+
+          <span v-if="currency === 'euro'">
+            {{ coinList[index].holding * coin.price_eur | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+          </span>
+        </div>
+
+        <div class="coinlist__holding-amount">
+          {{ coinList[index].holding }}
+        </div>
+      </div>
+
+      <input v-if="editMode" type="number"  step="0.1"
+            class="coinlist__holding-input"
+            v-model="coinList[index].holding"
+            @keyup="saveHolding()"
+            placeholder="Add the amount your holding" />
     </td>
+
     <td class="coinlist__price">
       <span v-if="currency === 'dollar'">
-        {{ coin.price_usd | currency('$', 3, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        {{ coin.price_usd | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         <small class="coinlist__btc-price">
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
       </span>
       <span v-if="currency === 'euro'">
-        {{ coin.price_eur | currency('€', 3, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        {{ coin.price_eur | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         <small class="coinlist__btc-price">
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
       </span>
     </td>
+
     <td class="coinlist__percent-change-24h right"
-       :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
+        :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
       {{ coin.percent_change_24h }}%
       <img src="../assets/icons/positive.svg" v-if="coin.percent_change_24h >= 0" />
       <img src="../assets/icons/negative.svg" v-if="coin.percent_change_24h < 0" />
@@ -55,6 +79,9 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      required: true
+    },
     currency: {
       type: String,
       required: true,
@@ -64,29 +91,27 @@ export default {
       required: true,
     },
   },
+  computed: {
+    coinList () {
+      return this.$store.getters.getPersonalCoinList; // v-model for holding amount
+    }
+  },
   mixins: [mixins],
   methods: {
     remove(symbol) {
-      let personalCoinList = JSON.parse(localStorage.getItem('personalCoinList'));
+      // filter out the coin to remove
+      this.$store.commit('removeCoin', symbol);
 
-      if (!personalCoinList || personalCoinList.length < 1) {
-        // If there is no personal coin list yet, and the user removes one from the list,
-        // we simply create a personalCoinList from all the coins so that remove works.
-        personalCoinList = this.coins.map(coin => coin.symbol);
-      }
-
-      // get coin symbol from list
-      const index = personalCoinList.indexOf(symbol);
-
-      // if found remove and store in local storage
-      if (index > -1) {
-        personalCoinList.splice(index, 1);
-        localStorage.setItem('personalCoinList', JSON.stringify(personalCoinList));
-
-        // refresh coin list in parent component
-        this.$parent.getCoins();
-      }
+      this.$parent.getCoins();
     },
+    saveHolding() {
+      // save the holding model
+      localStorage.setItem('personalCoinList', JSON.stringify(this.coinList));
+    }
+  },
+  created() {
+    // set coinlist model for holding input
+    this.coinList = this.$store.getters.getPersonalCoinList;
   },
 };
 </script>
@@ -96,6 +121,10 @@ export default {
   display: block;
   color: #888;
   font-size: 14px;
+}
+
+td {
+  line-height: 1.4;
 }
 
 .coinlist__price {
@@ -130,6 +159,20 @@ export default {
   display: block;
   color: #888;
   font-size: 14px;
+}
+
+.coinlist__holding-amount {
+  color: #888;
+}
+
+.coinlist__holding-input {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  padding: 6px 0;
+  width: 100%;
+  outline: none;
+  font-size: 13px;
 }
 
 .remove-link {

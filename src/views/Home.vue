@@ -23,11 +23,11 @@
           <th class="coinlist__delete" v-if="editMode"></th>
         </transition>
         <th>Coin</th>
-        <th class="right">&nbsp;</th>
+        <th>Holding</th>
         <th class="right">Latest price</th>
         <th class="right">24h %</th>
       </tr>
-      <tablerow v-for="coin in coins" :key="coin.id" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
+      <tablerow v-for="(coin, index) in coins" :key="index" :index="index" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
     </table>
 
     <transition name="fade">
@@ -67,7 +67,7 @@ export default {
       // coinmarketcap api url
       let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=2000';
 
-      const personalCoinList = JSON.parse(localStorage.getItem('personalCoinList'));
+      const personalCoinList = this.$store.getters.getPersonalCoinList;
 
       // if no personal coin list, get the top 10
       if (!personalCoinList || personalCoinList.length < 1) {
@@ -81,9 +81,14 @@ export default {
 
           if (!personalCoinList || personalCoinList.length < 1) {
             this.coins = coinData;
+
+            // If there is no personal coin list yet
+            // we simply create a personalCoinList from the top 10.
+            this.$store.commit('createCoinList', this.coins);
+
           } else {
-            // only the once in the personal list
-            this.coins = coinData.filter(item => personalCoinList.indexOf(item.symbol) !== -1);
+            // filter the coins in the personal list
+            this.coins = this.$store.getters.getCoinListWithHoldings(coinData);
           }
 
           // update the date
@@ -101,6 +106,7 @@ export default {
     toggleEditMode() {
       this.editMode = !this.editMode;
       this.editButtonLabel = this.editMode ? 'Done' : 'Edit';
+      this.coins = this.$store.getters.getCoinListWithHoldings(coinData);
     },
   },
   mounted() {

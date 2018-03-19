@@ -2,12 +2,11 @@ import Vue from 'vue';
 import main from './main.vue';
 
 import router from './router';
-// import store from './store';
+import store from './store';
 
 // 3th party
 import Vue2Filters from 'vue2-filters';
 import VueClipboard from 'vue-clipboard2';
-
 
 Vue.config.productionTip = false;
 
@@ -16,6 +15,10 @@ Vue.use(VueClipboard); // A simple vuejs 2 binding for clipboard.js
 
 window.app = new Vue({
   router,
-  // store,
+  store,
   render: h => h(main),
 }).$mount('#app');
+
+
+// TODO:
+// fix empty, duplicate and none existing coins in localstorage list

@@ -20,21 +20,7 @@ export default {
       // get coin from input
       const coinsToAdd = this.addcoin.toUpperCase();
       if (coinsToAdd.length > 1) {
-        // get localStorage
-        let personalCoinList = JSON.parse(localStorage.getItem('personalCoinList'));
-
-        // add to list
-        if (personalCoinList) {
-          personalCoinList = personalCoinList.concat(coinsToAdd.split(','));
-        } else {
-          personalCoinList = coinsToAdd.split(',');
-        }
-
-        // remove duplicates
-        personalCoinList = personalCoinList.filter((item, pos) => personalCoinList.indexOf(item) == pos);
-
-        // save to localStorage
-        localStorage.setItem('personalCoinList', JSON.stringify(personalCoinList));
+        this.$store.commit('addCoins', coinsToAdd);
 
         // clear input
         this.addcoin = '';
