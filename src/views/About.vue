@@ -1,5 +1,14 @@
 <template>
   <div class="about">
+    <div class="github-buttons">
+      <a @click="openExternalLink('https://github.com/RonaldR/CoinMenu/subscription')" target="_blank" class="github-buttons__button github-buttons__button--watch">
+        <img src="../assets/github-watch.png" />
+      </a>
+      <a @click="openExternalLink('https://github.com/RonaldR/CoinMenu')" target="_blank" class="github-buttons__button github-buttons__button--star">
+        <img src="../assets/github-star.png" />
+      </a>
+    </div>
+
     <router-link to="/" class="back-button"><img src="@/assets/icons/back.svg" /></router-link>
 
     <div class="about-content">
@@ -65,14 +74,14 @@
             Bob van Aubel
           </div>
         </div>
-        <div class="credits__column">
+        <!-- <div class="credits__column">
           <div class="credits__title">
             LOGO BY
           </div>
           <div class="credits__name">
             Pasquale Willemstein
           </div>
-        </div>
+        </div> -->
         <div class="credits__column">
           <div class="credits__title">
             APP IDEA
@@ -129,6 +138,24 @@ export default {
   text-align: center;
   margin: 12px 0 0 8px;
   padding-top: 5px;
+}
+
+.github-buttons {
+  float: right;
+}
+
+.github-buttons__button {
+  margin-left: 8px;
+  width: 76px;
+  display: inline-block;
+
+  img {
+    width: 100%;
+  }
+
+  &--star {
+    width: 62px;
+  }
 }
 
 .about-content {
