@@ -5,7 +5,7 @@ import menubar from 'menubar';
 const menuBar = menubar({
   preloadWindow: true,
   width: 500,
-  height: 380,
+  height: 400,
   dir: __dirname,
   icon: path.join(__dirname, 'icon.png'),
   index: path.join('file://', __dirname, '../dist/index.html'),

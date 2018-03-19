@@ -119,7 +119,7 @@ export default {
     window.electronRemote.getCurrentWindow().setSize(600, 480, true);
   },
   destroyed() {
-    window.electronRemote.getCurrentWindow().setSize(500, 380, true);
+    window.electronRemote.getCurrentWindow().setSize(500, 400, true);
   },
 };
 </script>
