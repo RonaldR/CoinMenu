@@ -80,7 +80,7 @@ export default {
       required: true,
     },
     index: {
-      required: true
+      required: true,
     },
     currency: {
       type: String,
@@ -93,7 +93,7 @@ export default {
   },
   data() {
     return {
-      holding: this.$store.getters.getHoldingAmount(this.coin.symbol)
+      holding: this.$store.getters.getHoldingAmount(this.coin.symbol),
     };
   },
   mixins: [mixins],
@@ -106,8 +106,8 @@ export default {
     },
     saveHoldingAmount() {
       this.$store.commit('saveHoldingAmount', { symbol: this.coin.symbol, holdingAmount: this.holding });
-    }
-  }
+    },
+  },
 };
 </script>
 

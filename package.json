@@ -12,11 +12,11 @@
     "electron-compile": "^6.4.2",
     "menubar": "^5.2.3",
     "moment": "^2.20.1",
-    "vue": "^2.5.13",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
+    "vue": "^2.5.16",
     "vue-clipboard2": "0.0.9",
-    "vue2-filters": "^0.3.0"
+    "vue-router": "^3.0.1",
+    "vue2-filters": "^0.3.0",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
@@ -30,7 +30,7 @@
     "babel-jest": "^22.0.4",
     "codacy-coverage": "^2.1.0",
     "electron-prebuilt-compile": "1.8.2",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.8.3",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13"
   },

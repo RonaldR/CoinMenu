@@ -65,36 +65,40 @@ export default {
   methods: {
     getCoins() {
       // coinmarketcap api url
-      let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=2000';
+      let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR';
 
       const personalCoinList = this.$store.getters.getPersonalCoinList;
 
       // if no personal coin list, get the top 10
       if (!personalCoinList || personalCoinList.length < 1) {
         url += '&limit=10';
+      } else {
+        url += '&limit=2000';
       }
-
-      this.coins = null;
 
       // fetch the data
       axios.get(url)
         .then((response) => {
-          const coinData = response.data;
+          this.coins = null; // clear list
 
-          if (!personalCoinList || personalCoinList.length < 1) {
-            this.coins = coinData;
+          // timeout to async it more
+          setTimeout(() => {
+            const coinData = response.data;
 
-            // If there is no personal coin list yet
-            // we simply create a personalCoinList from the top 10.
-            this.$store.commit('createCoinList', this.coins);
+            if (!personalCoinList || personalCoinList.length < 1) {
+              this.coins = coinData;
 
-          } else {
-            // filter the coins in the personal list
-            this.coins = this.$store.getters.getCoinListWithHoldings(coinData);
-          }
+              // If there is no personal coin list yet
+              // we simply create a personalCoinList from the top 10.
+              this.$store.commit('createCoinList', this.coins);
+            } else {
+              // filter the coins in the personal list
+              this.coins = this.$store.getters.getCoinListWithHoldings(coinData);
+            }
 
-          // update the date
-          this.refreshDate = moment().format('DD-MM-YYYY HH:mm:ss');
+            // update the date
+            this.refreshDate = moment().format('DD-MM-YYYY HH:mm:ss');
+          });
         })
         .catch((error) => {
           console.log(error);

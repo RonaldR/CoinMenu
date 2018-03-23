@@ -5,56 +5,46 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    personalCoinList: JSON.parse(localStorage.getItem('personalCoinList'))
+    personalCoinList: JSON.parse(localStorage.getItem('personalCoinList')),
   },
   getters: {
-    getPersonalCoinList: state => { // return personalCoinList state
-      return state.personalCoinList;
-    },
-    getCoinListWithHoldings: (state)  => (coinData) => { // filter the ones in the personal list
-      return coinData.filter(item => state.personalCoinList.find(coin => {
+    getPersonalCoinList: state => // return personalCoinList state
+      state.personalCoinList,
+    getCoinListWithHoldings: state => coinData => // filter the ones in the personal list
+      coinData.filter(item => state.personalCoinList.find((coin) => {
         if (coin && coin.symbol && coin.symbol === item.symbol) {
           // add holding amount to coin object
           item.holding = coin.holding;
           return true;
         }
-      }));
-    },
-    getHoldingAmount: (state) => (coinSymbol) => {
-      let coin = state.personalCoinList.find(coin => coin && coin.symbol && coin.symbol === coinSymbol);
+      })),
+    getHoldingAmount: state => (coinSymbol) => {
+      const coin = state.personalCoinList.find(coin => coin && coin.symbol && coin.symbol === coinSymbol);
       if (coin) {
         return coin.holding;
       }
-    }
+    },
   },
   mutations: {
     createCoinList: (state, coinList) => { // create coin list with objects
-      state.personalCoinList = coinList.map(coin => {
-        return {
-          symbol: coin.symbol,
-          holding: null
-        };
-      });
+      state.personalCoinList = coinList.map(coin => ({
+        symbol: coin.symbol,
+        holding: null,
+      }));
 
       // save to localStorage
       localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
     },
     addCoins: (state, coinsToAdd) => {
       // add a coin to the list
-      state.personalCoinList = state.personalCoinList.concat(
-        coinsToAdd.split(',') // split string to Array
+      state.personalCoinList = state.personalCoinList.concat(coinsToAdd.split(',') // split string to Array
         // filter checks if coin is valid and not already in list
-        .filter(coin => coin && coin.length > 2 && ! state.personalCoinList.find(item => {
-          return item && item.symbol === coin;
-        }))
+        .filter(coin => coin && coin.length > 2 && !state.personalCoinList.find(item => item && item.symbol === coin))
         // maps to object
-        .map(coin => {
-          return {
-            symbol: coin,
-            holding: null
-          };
-        })
-      );
+        .map(coin => ({
+          symbol: coin,
+          holding: null,
+        })));
 
       // save to localStorage
       localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
@@ -65,13 +55,13 @@ export default new Vuex.Store({
       localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
     },
     saveHoldingAmount: (state, obj) => {
-      let coin = state.personalCoinList.find(coin => coin.symbol === obj.symbol);
+      const coin = state.personalCoinList.find(coin => coin.symbol === obj.symbol);
       if (coin) {
         coin.holding = obj.holdingAmount;
       }
       // save to localStorage
       localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
-    }
+    },
   },
   actions: {
 
