@@ -23,6 +23,7 @@ menuBar.on('ready', () => {
   // menuBar.window.openDevTools();
   menuBar.window.setResizable(false);
 
-  // menuBar.window.setVibrancy('ultra-dark'); // electron transparency bug titlebarAppearsTransparent
+  // electron transparency bug titlebarAppearsTransparent
+  // menuBar.window.setVibrancy('ultra-dark');
   menuBar.window.setOpacity(0.99);
 });

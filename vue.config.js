@@ -1,9 +1,8 @@
 module.exports = {
   lintOnSave: true,
-};
-
-/* configureWebpack: {
-  output: {
-    publicPath: '',
+  configureWebpack: {
+    output: {
+      publicPath: '',
+    },
   },
-}, */
+};

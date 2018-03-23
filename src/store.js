@@ -19,7 +19,7 @@ export default new Vuex.Store({
         }
       })),
     getHoldingAmount: state => (coinSymbol) => {
-      const coin = state.personalCoinList.find(coin => coin && coin.symbol && coin.symbol === coinSymbol);
+      const coin = state.personalCoinList.find(coinItem => coinItem && coinItem.symbol && coinItem.symbol === coinSymbol);
       if (coin) {
         return coin.holding;
       }
@@ -55,7 +55,7 @@ export default new Vuex.Store({
       localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
     },
     saveHoldingAmount: (state, obj) => {
-      const coin = state.personalCoinList.find(coin => coin.symbol === obj.symbol);
+      const coin = state.personalCoinList.find(coinItem => coinItem.symbol === obj.symbol);
       if (coin) {
         coin.holding = obj.holdingAmount;
       }
