@@ -8,12 +8,12 @@
       </div>
 
       <div class="header__currency-switcher">
-        <span class="currency" :class="{ active: currency === 'dollar' }" @click="switchCurrency('dollar')">USD</span>
-        <span class="currency" :class="{ active: currency === 'euro' }" @click="switchCurrency('euro')">EUR</span>
+        <span class="currency" :class="{ active: currency === 'dollar' }" @click="currency = 'dollar'">USD</span>
+        <span class="currency" :class="{ active: currency === 'euro' }" @click="currency = 'euro'">EUR</span>
       </div>
 
       <div class="header__edit-button">
-        <a @click="toggleEditMode()" :class="{ editMode: editMode }">{{ editButtonLabel }}</a>
+        <a @click="toggleEditMode()" :class="{ editMode }">{{ editButtonLabel }}</a>
       </div>
     </div>
 
@@ -52,14 +52,17 @@ export default {
     foot,
     addcoin,
   },
+  computed: {
+    editButtonLabel() {
+      return this.editMode ? 'Done' : 'Edit';
+    }
+  },
   data() {
     return {
       coins: [],
       refreshDate: '',
-      addcoin: '',
       currency: 'dollar',
-      editMode: false,
-      editButtonLabel: 'Edit',
+      editMode: false
     };
   },
   methods: {
@@ -105,13 +108,8 @@ export default {
           this.coins = null; // reset on error
         });
     },
-    switchCurrency(currency) {
-      // dollar, euro or btc
-      this.currency = currency;
-    },
     toggleEditMode() {
       this.editMode = !this.editMode;
-      this.editButtonLabel = this.editMode ? 'Done' : 'Edit';
       this.getCoins();
     },
   },

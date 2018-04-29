@@ -56,11 +56,10 @@
       </span>
     </td>
 
-    <td class="coinlist__percent-change-24h right"
-        :class="{ positive: coin.percent_change_24h >= 0, negative: coin.percent_change_24h < 0 }">
+    <td class="coinlist__percent-change-24h right" :class="{ changeClass }">
       {{ coin.percent_change_24h }}%
-      <img src="../assets/icons/positive.svg" v-if="coin.percent_change_24h >= 0" />
-      <img src="../assets/icons/negative.svg" v-if="coin.percent_change_24h < 0" />
+      <img src="../assets/icons/positive.svg" v-if="changeClass === 'positive'" />
+      <img src="../assets/icons/negative.svg" v-if="changeClass === 'negative'" />
     </td>
   </tr>
 </template>
@@ -90,6 +89,11 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  computed: {
+    changeClass() {
+      return coin.percent_change_24h >= 0 ? 'positive' : 'negative';
+    }
   },
   data() {
     return {
