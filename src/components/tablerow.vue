@@ -21,11 +21,11 @@
       <div v-if="! editMode && holding">
         <div class="coinlist__holding-price">
           <span v-if="currency === 'dollar'">
-            {{ holding * coin.price_usd | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ holding * coin.quotes.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
           </span>
 
           <span v-if="currency === 'euro'">
-            {{ holding * coin.price_eur | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ holding * coin.quotes.EUR.price  | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
           </span>
         </div>
 
@@ -43,13 +43,13 @@
 
     <td class="coinlist__price">
       <span v-if="currency === 'dollar'">
-        {{ coin.price_usd | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        {{ coin.quotes.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         <small class="coinlist__btc-price">
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
       </span>
       <span v-if="currency === 'euro'">
-        {{ coin.price_eur | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        {{ coin.quotes.EUR.price | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         <small class="coinlist__btc-price">
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
@@ -57,7 +57,7 @@
     </td>
 
     <td class="coinlist__percent-change-24h right" :class="{ changeClass }">
-      {{ coin.percent_change_24h }}%
+      {{ coin.quotes.USD.percent_change_24h }}%
       <img src="../assets/icons/positive.svg" v-if="changeClass === 'positive'" />
       <img src="../assets/icons/negative.svg" v-if="changeClass === 'negative'" />
     </td>
@@ -70,10 +70,6 @@ import mixins from '../mixins';
 export default {
   name: 'tablerow',
   props: {
-    coins: {
-      type: Array,
-      required: true,
-    },
     coin: {
       type: Object,
       required: true,
@@ -92,7 +88,7 @@ export default {
   },
   computed: {
     changeClass() {
-      return coin.percent_change_24h >= 0 ? 'positive' : 'negative';
+      return this.coin.percent_change_24h >= 0 ? 'positive' : 'negative';
     }
   },
   data() {
@@ -106,7 +102,7 @@ export default {
       // filter out the coin to remove
       this.$store.commit('removeCoin', this.coin.symbol);
       // refresh
-      this.$parent.getCoins();
+      this.$parent.reloadCoins();
     },
     saveHoldingAmount() {
       this.$store.commit('saveHoldingAmount', { symbol: this.coin.symbol, holdingAmount: this.holding });

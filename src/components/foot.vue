@@ -7,7 +7,7 @@
 
     <small class="refreshed">
       Market cap:
-      {{ globalData.total_market_cap_usd | currency('$', 0, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+      {{ totalMarketCap | currency('$', 0, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
     </small>
 
     <small>
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      globalData: {},
+      totalMarketCap: {},
     };
   },
   methods: {
@@ -40,13 +40,13 @@ export default {
     },
     getGlobalData() {
       // get global coin data like the total market cap
-      axios.get('https://api.coinmarketcap.com/v1/global/?convert=EUR')
+      axios.get('https://api.coinmarketcap.com/v2/global/')
         .then((response) => {
-          this.globalData = response.data;
+          this.totalMarketCap = response.data.data.quotes.USD.total_market_cap;
         })
         .catch((error) => {
           console.log(error);
-          this.globalData = null; // reset
+          this.totalMarketCap = null; // reset
         });
     },
   },

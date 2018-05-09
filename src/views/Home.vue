@@ -1,6 +1,5 @@
 <template>
   <div class="coins">
-
     <div class="header">
       <div class="header__logo-title">
         <img src="../assets/logo.svg" class="header__logo" />
@@ -27,7 +26,7 @@
         <th class="right">Latest price</th>
         <th class="right">24h %</th>
       </tr>
-      <tablerow v-for="(coin, index) in coins" :key="index" :index="index" :coin="coin" :coins="coins" :currency="currency" :editMode="editMode" />
+      <tablerow v-for="(coin, index) in coins" :key="index" :index="index" :coin="coin" :currency="currency" :editMode="editMode" />
     </table>
 
     <transition name="fade">
@@ -62,13 +61,14 @@ export default {
       coins: [],
       refreshDate: '',
       currency: 'dollar',
-      editMode: false
+      editMode: false,
+      coinData: []
     };
   },
   methods: {
     getCoins() {
       // coinmarketcap api url
-      let url = 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR';
+      let url = 'https://api.coinmarketcap.com/v2/ticker/?convert=EUR';
 
       const personalCoinList = this.$store.getters.getPersonalCoinList;
 
@@ -86,17 +86,23 @@ export default {
 
           // timeout to async it more
           setTimeout(() => {
-            const coinData = response.data;
+            this.coinData = response.data.data;
+            // data is object, convert to array
+            this.coinData = Object.values(this.coinData);
+            // sort on rank.
+            this.coinData.sort(function(a, b) {
+                return a.rank - b.rank;
+            });
 
             if (!personalCoinList || personalCoinList.length < 1) {
-              this.coins = coinData;
+              this.coins = this.coinData;
 
               // If there is no personal coin list yet
               // we simply create a personalCoinList from the top 10.
               this.$store.commit('createCoinList', this.coins);
             } else {
               // filter the coins in the personal list
-              this.coins = this.$store.getters.getCoinListWithHoldings(coinData);
+              this.reloadCoins();
             }
 
             // update the date
@@ -107,6 +113,9 @@ export default {
           console.log(error);
           this.coins = null; // reset on error
         });
+    },
+    reloadCoins() {
+      this.coins = this.$store.getters.getCoinListWithHoldings(this.coinData);
     },
     toggleEditMode() {
       this.editMode = !this.editMode;

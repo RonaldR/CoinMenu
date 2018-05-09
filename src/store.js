@@ -8,8 +8,7 @@ export default new Vuex.Store({
     personalCoinList: JSON.parse(localStorage.getItem('personalCoinList')),
   },
   getters: {
-    getPersonalCoinList: state => // return personalCoinList state
-      state.personalCoinList,
+    getPersonalCoinList: state => state.personalCoinList,// return personalCoinList state
     getCoinListWithHoldings: state => coinData => // filter the ones in the personal list
       coinData.filter(item => state.personalCoinList.find((coin) => {
         if (coin && coin.symbol && coin.symbol === item.symbol) {
@@ -17,7 +16,8 @@ export default new Vuex.Store({
           item.holding = coin.holding;
           return true;
         }
-      })),
+      })
+    ),
     getHoldingAmount: state => (coinSymbol) => {
       const coin = state.personalCoinList.find(coinItem => coinItem && coinItem.symbol && coinItem.symbol === coinSymbol);
       if (coin) {

@@ -43,10 +43,10 @@
     "make": "electron-forge make",
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "test": "vue-cli-service test",
     "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c",
     "e2e": "vue-cli-service e2e",
-    "lint": "vue-cli-service lint",
     "e2e:open": "vue-cli-service e2e:open"
   },
   "browserslist": [
