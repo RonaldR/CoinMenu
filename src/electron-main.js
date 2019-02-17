@@ -20,7 +20,7 @@ menuBar.on('show', () => {
 menuBar.on('ready', () => {
   // DEV
   // console.log('app is ready');
-  // menuBar.window.openDevTools();
+//   menuBar.window.openDevTools();
   menuBar.window.setResizable(false);
 
   // electron transparency bug titlebarAppearsTransparent

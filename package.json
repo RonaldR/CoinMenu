@@ -1,5 +1,5 @@
 {
-  "name": "Coinmenu",
+  "name": "coinmenu",
   "version": "0.3.0",
   "description": "Cryptocoins in your menubar",
   "repository": {
@@ -8,31 +8,30 @@
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.1",
-    "electron-compile": "^6.4.2",
+    "electron-compile": "^6.4.4",
     "menubar": "^5.2.3",
-    "moment": "^2.20.1",
-    "vue": "^2.5.16",
-    "vue-clipboard2": "0.0.9",
-    "vue-router": "^3.0.1",
-    "vue2-filters": "^0.3.0",
-    "vuex": "^3.0.1"
+    "moment": "^2.24.0",
+    "vue": "^2.6.6",
+    "vue-clipboard2": "^0.3.0",
+    "vue-router": "^3.0.2",
+    "vue2-filters": "^0.4.1",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
-    "@vue/cli-plugin-e2e-cypress": "^3.0.0-beta.6",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.6",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.6",
-    "@vue/cli-service": "^3.0.0-beta.6",
-    "@vue/eslint-config-airbnb": "^3.0.0-beta.6",
-    "@vue/test-utils": "^1.0.0-beta.10",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-unit-jest": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-airbnb": "^3.0.5",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.0.4",
+    "babel-jest": "^22.4.4",
     "codacy-coverage": "^2.1.0",
     "electron-prebuilt-compile": "1.8.2",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.11.0",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.6.6"
   },
   "main": "src/electron-main.js",
   "scripts": {
@@ -47,7 +46,8 @@
     "test": "vue-cli-service test",
     "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c",
     "e2e": "vue-cli-service e2e",
-    "e2e:open": "vue-cli-service e2e:open"
+    "e2e:open": "vue-cli-service e2e:open",
+    "now-publish": "yarn build && cp now.json dist/now.json && cd dist && now --public"
   },
   "browserslist": [
     "> 1%",

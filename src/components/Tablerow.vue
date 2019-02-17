@@ -21,11 +21,11 @@
       <div v-if="! editMode && holding">
         <div class="coinlist__holding-price">
           <span v-if="currency === 'dollar'">
-            {{ holding * coin.quotes.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ holding * coin.quote.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
           </span>
 
           <span v-if="currency === 'euro'">
-            {{ holding * coin.quotes.EUR.price  | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ holding * coin.quote.EUR.price | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
           </span>
         </div>
 
@@ -43,13 +43,13 @@
 
     <td class="coinlist__price">
       <span v-if="currency === 'dollar'">
-        {{ coin.quotes.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        {{ coin.quote.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         <small class="coinlist__btc-price">
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
       </span>
       <span v-if="currency === 'euro'">
-        {{ coin.quotes.EUR.price | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+        {{ coin.quote.EUR.price | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         <small class="coinlist__btc-price">
           {{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
         </small>
@@ -57,7 +57,7 @@
     </td>
 
     <td class="coinlist__percent-change-24h right" :class="{ changeClass }">
-      {{ coin.quotes.USD.percent_change_24h }}%
+      {{ coin.quote.USD.percent_change_24h.toFixed(2) }}%
       <img src="../assets/icons/positive.svg" v-if="changeClass === 'positive'" />
       <img src="../assets/icons/negative.svg" v-if="changeClass === 'negative'" />
     </td>
