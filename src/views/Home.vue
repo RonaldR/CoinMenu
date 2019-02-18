@@ -61,7 +61,6 @@ import addcoin from "@/components/Addcoin";
 import { apiKey, envUrl } from "../helpers";
 
 export default {
-    name: "home",
     components: {
         tablerow,
         foot,

@@ -1,87 +1,84 @@
 <template>
-  <div id="app">
-    <transition name="fade">
-      <router-view></router-view>
-    </transition>
-  </div>
+    <div id="app">
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
+    </div>
 </template>
 
-<script>
-export default {
-  name: 'app',
-};
-</script>
-
 <style lang="scss">
-html,body {
-  font-size: 14px;
+html,
+body {
+    font-size: 14px;
 }
 
 body {
-  margin: 0 16px;
-  background: rgba(21,21,21,.93);
+    margin: 0 16px;
+    background: rgba(21, 21, 21, 0.93);
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #app {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #fff;
-  margin-top: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+        Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+    margin-top: 0;
 }
 
 a {
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 th,
 td {
-  text-align: left;
+    text-align: left;
 
-  &:last-child {
-    padding-right: 0;
-  }
+    &:last-child {
+        padding-right: 0;
+    }
 }
 
 th {
-  color: #888888;
-  font-weight: normal;
-  padding: 12px 8px 12px 0;
+    color: #888888;
+    font-weight: normal;
+    padding: 12px 8px 12px 0;
 }
 
 td {
-  padding: 4px 8px 4px 0;
-  vertical-align: top;
+    padding: 4px 8px 4px 0;
+    vertical-align: top;
 }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .right {
-  text-align: right !important;
+    text-align: right !important;
 }
 
 .fright {
-  float: right;
+    float: right;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .2s linear;
+    transition: opacity 0.2s linear;
 }
 
 .fade-enter-active {
-  transition-delay: .2s;
+    transition-delay: 0.2s;
 }
 
-.fade-enter, .fade-leave-active {
-  opacity: 0
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
 }
 </style>

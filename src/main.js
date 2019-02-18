@@ -20,6 +20,5 @@ window.app = new Vue({
     render: h => h(App)
 });
 
-
 // TODO:
 // fix empty, duplicate and none existing coins in localstorage list

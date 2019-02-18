@@ -22,7 +22,6 @@
 import { apiKey, envUrl } from "../helpers";
 
 export default {
-    name: "foot",
     props: {
         refreshDate: {
             type: String,
