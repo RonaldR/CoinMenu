@@ -19,8 +19,6 @@ If you like the app you can show your appreciation by leaving a star on the gith
 - BTC `13xB6FVUfDRJfDuUCqWnZzaStaMXSbiHgp`
 - ETH `0xf774c2148235d20FD5E6c22b86BBd78A1f5E872F`
 - LTC `LM2GNo5koDWfJAuidw8dXCLuTEoHLhMQhQ`
-- SMART `SbPQtwGHbfvRzzWMXGRbmj21zzXTKB2i52`
-- DGB `DMHzEy84Tr5PKZ7QDEbZJLgL5hkTJZPA9r`
 
 
 ## Contribute
@@ -29,9 +27,9 @@ You can also contribute to the project by doing a pull request. Please do.
 
 ## Instructions
 
-- `npm install`
-- `npm run serve` to run vue app in browser
-- `npm run start-build` or `npm run start` to run the app in menubar/electon
+- `yarn install`
+- `yarn serve` to run vue app in browser
+- `yarn start-build` or `yarn start` to run the app in menubar/electon
 
 ###### API used: https://coinmarketcap.com/api/  
 
