@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import moment from "moment";
 import tablerow from "@/components/Tablerow";
 import foot from "@/components/Foot";
 import addcoin from "@/components/Addcoin";
+import { format } from 'date-fns';
 
 import { apiKey, envUrl } from "../helpers";
 
@@ -126,9 +126,7 @@ export default {
                         }
 
                         // update the date
-                        this.refreshDate = moment().format(
-                            "DD-MM-YYYY HH:mm:ss"
-                        );
+                        this.refreshDate = format(new Date(), 'DD-MM-YYYY HH:mm:ss');
                     });
                 })
                 .catch(error => {
