@@ -1,6 +1,6 @@
 <template>
     <div class="addcoins-wrapper">
-        <img class="icon" src="../assets/icons/add.svg">
+        <img class="icon" src="@/assets/icons/add.svg">
         <input
             id="addcoins"
             type="text"
@@ -45,7 +45,6 @@ export default {
     position: relative;
 
     .icon {
-        content: "";
         position: absolute;
         left: 2px;
         top: 50%;

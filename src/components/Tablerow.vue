@@ -3,16 +3,13 @@
         <transition name="fade">
             <td class="coinlist__delete" v-if="editMode">
                 <a class="remove-link" @click="remove()">
-                    <img src="../assets/icons/remove.svg">
+                    <img src="@/assets/icons/remove.svg" alt="remove">
                 </a>
             </td>
         </transition>
 
         <td class="coinlist__coin-short">
-            <a
-                @click="openExternalLink('https://coinmarketcap.com/currencies/' + coin.id)"
-                target="_blank"
-            >
+            <a @click="openExternalLink(`https://coinmarketcap.com/currencies/${coin.name}`)">
                 {{ coin.symbol }}
                 <small class="coinlist__coin">{{ coin.name }}</small>
             </a>
@@ -62,10 +59,11 @@
         <td class="coinlist__percent-change-24h right" :class="{ changeClass }">
             {{ coin.quote.USD.percent_change_24h.toFixed(2) }}%
             <img
-                src="../assets/icons/positive.svg"
+                src="@/assets/icons/positive.svg"
                 v-if="changeClass === 'positive'"
+                alt="up"
             >
-            <img src="../assets/icons/negative.svg" v-if="changeClass === 'negative'">
+            <img src="@/assets/icons/negative.svg" v-if="changeClass === 'negative'" alt="down">
         </td>
     </tr>
 </template>
@@ -93,7 +91,9 @@ export default {
     },
     computed: {
         changeClass() {
-            return this.coin.percent_change_24h >= 0 ? "positive" : "negative";
+            return this.coin.quote.USD.percent_change_24h >= 0
+                ? "positive"
+                : "negative";
         }
     },
     data() {

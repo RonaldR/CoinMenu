@@ -2,7 +2,7 @@
     <div class="coins">
         <div class="header">
             <div class="header__logo-title">
-                <img src="../assets/logo.svg" class="header__logo">
+                <img src="@/assets/logo.svg" alt="logo" class="header__logo">
                 <span class="header__title">Coin menu</span>
             </div>
 
@@ -11,16 +11,22 @@
                     class="currency"
                     :class="{ active: currency === 'dollar' }"
                     @click="currency = 'dollar'"
-                >USD</span>
+                >
+                    USD
+                </span>
                 <!-- <span
                     class="currency"
                     :class="{ active: currency === 'euro' }"
                     @click="currency = 'euro'"
-                >EUR</span>-->
+                >
+                    EUR
+                </span>-->
             </div>
 
             <div class="header__edit-button">
-                <a @click="toggleEditMode()" :class="{ editMode }">{{ editButtonLabel }}</a>
+                <a @click="toggleEditMode()" :class="{ editMode }">
+                    {{ editButtonLabel }}
+                </a>
             </div>
         </div>
 
@@ -48,7 +54,7 @@
             <addcoin v-if="editMode"/>
         </transition>
 
-        <foot :refresh-date="refreshDate"/>
+        <foot :refresh-date="refreshDate" :loading="loading" />
     </div>
 </template>
 
@@ -77,14 +83,15 @@ export default {
             refreshDate: "",
             currency: "dollar",
             editMode: false,
-            coinData: []
+            coinData: [],
+            loading: true
         };
     },
     methods: {
         getCoins() {
-            let url = `${envUrl(
-                "prod"
-            )}v1/cryptocurrency/listings/latest?convert=USD`;
+            this.loading = true;
+
+            let url = `${envUrl()}v1/cryptocurrency/listings/latest?convert=USD`;
 
             const personalCoinList = this.$store.getters.getPersonalCoinList;
             // if no personal coin list, get the top 10
@@ -98,21 +105,20 @@ export default {
                 headers: {
                     origin: "http://localhost",
                     "X-Requested-With": "XMLHttpRequest",
-                    "X-CMC_PRO_API_KEY": apiKey("prod")
+                    "X-CMC_PRO_API_KEY": apiKey()
                 }
             })
                 .then(response => response.json())
                 .then(response => {
-                    this.coins = null; // clear list
+                    // this.coins = null; // clear list
 
+                    // timeout, because.... ?
                     setTimeout(() => {
                         this.coinData = response.data;
                         // data is object, convert to array
                         this.coinData = Object.values(this.coinData);
                         // sort on rank.
-                        this.coinData.sort(function(a, b) {
-                            return a.rank - b.rank;
-                        });
+                        this.coinData.sort((a, b) => a.cmc_rank - b.cmc_rank);
 
                         if (!personalCoinList || personalCoinList.length < 1) {
                             this.coins = this.coinData;
@@ -127,11 +133,14 @@ export default {
 
                         // update the date
                         this.refreshDate = format(new Date(), 'DD-MM-YYYY HH:mm:ss');
+
+                        this.loading = false;
                     });
                 })
                 .catch(error => {
                     console.log(error);
                     this.coins = null; // reset on error
+                    this.loading = false;
                 });
         },
         reloadCoins() {

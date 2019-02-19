@@ -6,14 +6,14 @@
                 target="_blank"
                 class="github-buttons__button github-buttons__button--watch"
             >
-                <img src="../assets/github-watch.png">
+                <img src="@/assets/github-watch.png">
             </a>
             <a
                 @click="openExternalLink('https://github.com/RonaldR/CoinMenu')"
                 target="_blank"
                 class="github-buttons__button github-buttons__button--star"
             >
-                <img src="../assets/github-star.png">
+                <img src="@/assets/github-star.png">
             </a>
         </div>
 
@@ -52,8 +52,9 @@
                     >
                         13xB6FVUfDRJfDuUCqWnZzaStaMXSbiHgp
                         <img
-                            src="../assets/icons/copy.svg"
+                            src="@/assets/icons/copy.svg"
                             class="donations__copy-icon"
+                            alt="copy"
                         >
                     </a>
                 </li>
@@ -65,8 +66,9 @@
                     >
                         0xf774c2148235d20FD5E6c22b86BBd78A1f5E872F
                         <img
-                            src="../assets/icons/copy.svg"
+                            src="@/assets/icons/copy.svg"
                             class="donations__copy-icon"
+                            alt="copy"
                         >
                     </a>
                 </li>
@@ -78,8 +80,9 @@
                     >
                         LM2GNo5koDWfJAuidw8dXCLuTEoHLhMQhQ
                         <img
-                            src="../assets/icons/copy.svg"
+                            src="@/assets/icons/copy.svg"
                             class="donations__copy-icon"
+                            alt="copy"
                         >
                     </a>
                 </li>
@@ -120,10 +123,14 @@ export default {
         };
     },
     created() {
-        window.electronRemote.getCurrentWindow().setSize(600, 480, true);
+        if (window.electronRemote) {
+            window.electronRemote.getCurrentWindow().setSize(600, 480, true);
+        }
     },
     destroyed() {
-        window.electronRemote.getCurrentWindow().setSize(500, 400, true);
+        if (window.electronRemote) {
+            window.electronRemote.getCurrentWindow().setSize(500, 400, true);
+        }
     }
 };
 </script>

@@ -2,7 +2,7 @@
     <footer class="footer">
         <small>
             <a @click="refresh()" class="refresh">
-                <img src="../assets/icons/refresh.svg">
+                <img src="@/assets/icons/refresh.svg" alt="refresh" :class="{loading}">
             </a>
             Updated at: {{ refreshDate }}
         </small>
@@ -26,6 +26,10 @@ export default {
         refreshDate: {
             type: String,
             required: true
+        },
+        loading: {
+            type: Boolean,
+            required: true
         }
     },
     data() {
@@ -41,15 +45,13 @@ export default {
         },
         getGlobalData() {
             // get global coin data like the total market cap
-            const url = `${envUrl(
-                "prod"
-            )}v1/global-metrics/quotes/latest?convert=USD`;
+            const url = `${envUrl()}v1/global-metrics/quotes/latest?convert=USD`;
 
             fetch(url, {
                 headers: {
                     origin: "http://localhost",
                     "X-Requested-With": "XMLHttpRequest",
-                    "X-CMC_PRO_API_KEY": apiKey("prod")
+                    "X-CMC_PRO_API_KEY": apiKey()
                 }
             })
                 .then(response => response.json())
@@ -108,5 +110,16 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.loading {
+    -webkit-animation:spin 3s linear infinite;
+    -moz-animation:spin 3s linear infinite;
+    animation:spin 3s linear infinite;
 }
 </style>
