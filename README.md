@@ -10,7 +10,7 @@ With this menubar app you can keep track of your Bitcoin (BTC), Ether (ETH), Lit
 <img src="https://raw.githubusercontent.com/RonaldR/CoinMenu/master/screenshot.png" width="320">
 
 Working web version:
-https://coinmenu-ufjbtpzdvc.now.sh
+https://coinmenu.now.sh
 
 
 If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀   
