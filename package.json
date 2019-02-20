@@ -1,6 +1,6 @@
 {
   "name": "coinmenu",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Cryptocoins in your menubar",
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "electron-compile": "^6.4.4",
     "menubar": "^5.2.3",
     "vue": "^2.6.6",
+    "vue-analytics": "^5.16.2",
     "vue-clipboard2": "^0.3.0",
     "vue-router": "^3.0.2",
     "vue2-filters": "^0.4.1",

@@ -110,7 +110,8 @@ export default {
             })
                 .then(response => response.json())
                 .then(response => {
-                    // this.coins = null; // clear list
+                    // TODO: fix this and timeout
+                    this.coins = null; // clear list
 
                     // timeout, because.... ?
                     setTimeout(() => {
