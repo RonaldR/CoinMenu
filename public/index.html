@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="shortcut icon" href="<%= webpackConfig.output.publicPath %>favicon.ico">
-    <title>coinmenu</title>
+    <title>CoinMenu</title>
   </head>
   <body>
     <div id="app"></div>
@@ -13,10 +13,10 @@
 
     <script>
       // create easy access to electron
-      let electron = require('electron');
+    //   let electron = require('electron');
 
-      window.electronRemote = electron.remote; // used for resizing the window in about.vue
-      window.electron = electron; // used for focussed event
+    //   window.electronRemote = electron.remote; // used for resizing the window in about.vue
+    //   window.electron = electron; // used for focussed event
 
       // focussed event listener, to refresh on focus.
     //   window.electron.ipcRenderer.on('focussed', function(event, message) {

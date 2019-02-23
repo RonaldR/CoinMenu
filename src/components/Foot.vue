@@ -6,12 +6,14 @@
             </a>
             Updated at: {{ refreshDate }}
         </small>
-        
+
         <small class="refreshed">
             Market cap:
-            {{ totalMarketCap | currency('$', 0, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+            {{ totalMarketCap | currency('$', 0,
+                { thousandsSeparator: '.', decimalSeparator: ',' })
+            }}
         </small>
-        
+
         <small>
             <router-link to="/about" class="about-link">about</router-link>
         </small>
@@ -19,22 +21,22 @@
 </template>
 
 <script>
-import { apiKey, envUrl } from "../helpers";
+import { apiKey, envUrl } from '../helpers';
 
 export default {
     props: {
         refreshDate: {
             type: String,
-            required: true
+            required: true,
         },
         loading: {
             type: Boolean,
-            required: true
-        }
+            required: true,
+        },
     },
     data() {
         return {
-            totalMarketCap: {}
+            totalMarketCap: {},
         };
     },
     methods: {
@@ -49,25 +51,25 @@ export default {
 
             fetch(url, {
                 headers: {
-                    origin: "http://localhost",
-                    "X-Requested-With": "XMLHttpRequest",
-                    "X-CMC_PRO_API_KEY": apiKey()
-                }
+                    origin: 'http://localhost',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CMC_PRO_API_KEY': apiKey(),
+                },
             })
                 .then(response => response.json())
-                .then(response => {
+                .then((response) => {
                     this.totalMarketCap =
                         response.data.quote.USD.total_market_cap;
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.totalMarketCap = null; // reset
                 });
-        }
+        },
     },
     mounted() {
         this.getGlobalData();
-    }
+    },
 };
 </script>
 
@@ -112,14 +114,26 @@ export default {
     align-items: center;
 }
 
-
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
 
 .loading {
-    -webkit-animation:spin 3s linear infinite;
-    -moz-animation:spin 3s linear infinite;
-    animation:spin 3s linear infinite;
+    -webkit-animation: spin 3s linear infinite;
+    -moz-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
 }
 </style>

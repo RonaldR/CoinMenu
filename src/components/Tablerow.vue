@@ -18,13 +18,17 @@
         <td class="coinlist__holding">
             <div v-if="! editMode && holding">
                 <div class="coinlist__holding-price">
-                    <span
-                        v-if="currency === 'dollar'"
-                    >{{ holding * coin.quote.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}</span>
-                    
-                    <span
-                        v-if="currency === 'euro'"
-                    >{{ holding * coin.quote.EUR.price | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}</span>
+                    <span v-if="currency === 'dollar'">
+                        {{ holding * coin.quote.USD.price | currency('$', 2,
+                        { thousandsSeparator: '.', decimalSeparator: ',' })
+                        }}
+                    </span>
+
+                    <span v-if="currency === 'euro'">
+                        {{ holding * coin.quote.EUR.price | currency('€', 2,
+                        { thousandsSeparator: '.', decimalSeparator: ',' })
+                        }}
+                    </span>
                 </div>
 
                 <div class="coinlist__holding-amount">{{ holding }}</div>
@@ -43,16 +47,26 @@
 
         <td class="coinlist__price">
             <span v-if="currency === 'dollar'">
-                {{ coin.quote.USD.price | currency('$', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
+                {{ coin.quote.USD.price | currency('$', 2,
+                { thousandsSeparator: '.', decimalSeparator: ',' })
+                }}
                 <small
                     class="coinlist__btc-price"
-                >{{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}</small>
+                >
+                    {{ coin.price_btc | currency('', 8,
+                    { thousandsSeparator: '.', decimalSeparator: ',' })
+                    }}
+                </small>
             </span>
             <span v-if="currency === 'euro'">
-                {{ coin.quote.EUR.price | currency('€', 2, { thousandsSeparator: '.', decimalSeparator: ',' }) }}
-                <small
-                    class="coinlist__btc-price"
-                >{{ coin.price_btc | currency('', 8, { thousandsSeparator: '.', decimalSeparator: ',' }) }}</small>
+                {{ coin.quote.EUR.price | currency('€', 2,
+                { thousandsSeparator: '.', decimalSeparator: ',' })
+                }}
+                <small class="coinlist__btc-price">
+                    {{ coin.price_btc | currency('', 8,
+                    { thousandsSeparator: '.', decimalSeparator: ',' })
+                    }}
+                </small>
             </span>
         </td>
 
@@ -69,53 +83,53 @@
 </template>
 
 <script>
-import mixins from "../mixins";
+import mixins from '../mixins';
 
 export default {
     props: {
         coin: {
             type: Object,
-            required: true
+            required: true,
         },
         index: {
-            required: true
+            required: true,
         },
         currency: {
             type: String,
-            required: true
+            required: true,
         },
         editMode: {
             type: Boolean,
-            required: true
-        }
+            required: true,
+        },
     },
     computed: {
         changeClass() {
             return this.coin.quote.USD.percent_change_24h >= 0
-                ? "positive"
-                : "negative";
-        }
+                ? 'positive'
+                : 'negative';
+        },
     },
     data() {
         return {
-            holding: this.$store.getters.getHoldingAmount(this.coin.symbol)
+            holding: this.$store.getters.getHoldingAmount(this.coin.symbol),
         };
     },
     mixins: [mixins],
     methods: {
         remove() {
             // filter out the coin to remove
-            this.$store.commit("removeCoin", this.coin.symbol);
+            this.$store.commit('removeCoin', this.coin.symbol);
             // refresh
             this.$parent.reloadCoins();
         },
         saveHoldingAmount() {
-            this.$store.commit("saveHoldingAmount", {
+            this.$store.commit('saveHoldingAmount', {
                 symbol: this.coin.symbol,
-                holdingAmount: this.holding
+                holdingAmount: this.holding,
             });
-        }
-    }
+        },
+    },
 };
 </script>
 

@@ -36,7 +36,9 @@
                 <a
                     @click="openExternalLink('https://github.com/RonaldR/CoinMenu')"
                     target="_blank"
-                >If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀
+                >
+                    If you like the app you can show your appreciation by
+                    leaving a star on the github repo or donating some crypto 😉🚀
                     <br>
                     <br>You can also contribute to the project by doing a pull request.
                 </a>
@@ -113,13 +115,15 @@
 </template>
 
 <script>
-import mixins from "@/mixins";
+import mixins from '@/mixins';
 
 export default {
     mixins: [mixins],
     data() {
         return {
-            version: require("../../package.json").version
+            // TODO: better way to get version?
+            // eslint-disable-next-line
+            version: require('../../package.json').version,
         };
     },
     created() {
@@ -131,7 +135,7 @@ export default {
         if (window.electronRemote) {
             window.electronRemote.getCurrentWindow().setSize(500, 400, true);
         }
-    }
+    },
 };
 </script>
 

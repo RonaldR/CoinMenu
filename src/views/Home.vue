@@ -59,32 +59,32 @@
 </template>
 
 <script>
-import tablerow from "@/components/Tablerow";
-import foot from "@/components/Foot";
-import addcoin from "@/components/Addcoin";
+import tablerow from '@/components/Tablerow.vue';
+import foot from '@/components/Foot.vue';
+import addcoin from '@/components/Addcoin.vue';
 import { format } from 'date-fns';
 
-import { apiKey, envUrl } from "../helpers";
+import { apiKey, envUrl } from '../helpers';
 
 export default {
     components: {
         tablerow,
         foot,
-        addcoin
+        addcoin,
     },
     computed: {
         editButtonLabel() {
-            return this.editMode ? "Done" : "Edit";
-        }
+            return this.editMode ? 'Done' : 'Edit';
+        },
     },
     data() {
         return {
             coins: [],
-            refreshDate: "",
-            currency: "dollar",
+            refreshDate: '',
+            currency: 'dollar',
             editMode: false,
             coinData: [],
-            loading: true
+            loading: true,
         };
     },
     methods: {
@@ -96,20 +96,20 @@ export default {
             const personalCoinList = this.$store.getters.getPersonalCoinList;
             // if no personal coin list, get the top 10
             if (!personalCoinList || personalCoinList.length < 1) {
-                url += "&limit=10";
+                url += '&limit=10';
             } else {
-                url += "&limit=5000";
+                url += '&limit=5000';
             }
 
             fetch(url, {
                 headers: {
-                    origin: "http://localhost",
-                    "X-Requested-With": "XMLHttpRequest",
-                    "X-CMC_PRO_API_KEY": apiKey()
-                }
+                    origin: 'http://localhost',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CMC_PRO_API_KEY': apiKey(),
+                },
             })
                 .then(response => response.json())
-                .then(response => {
+                .then((response) => {
                     // TODO: fix this and timeout
                     this.coins = null; // clear list
 
@@ -126,7 +126,7 @@ export default {
 
                             // If there is no personal coin list yet
                             // we simply create a personalCoinList from the top 10.
-                            this.$store.commit("createCoinList", this.coins);
+                            this.$store.commit('createCoinList', this.coins);
                         } else {
                             // filter the coins in the personal list
                             this.reloadCoins();
@@ -138,25 +138,23 @@ export default {
                         this.loading = false;
                     });
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.coins = null; // reset on error
                     this.loading = false;
                 });
         },
         reloadCoins() {
-            this.coins = this.$store.getters.getCoinListWithHoldings(
-                this.coinData
-            );
+            this.coins = this.$store.getters.getCoinListWithHoldings(this.coinData);
         },
         toggleEditMode() {
             this.editMode = !this.editMode;
             this.getCoins();
-        }
+        },
     },
     mounted() {
         this.getCoins();
-    }
+    },
 };
 </script>
 

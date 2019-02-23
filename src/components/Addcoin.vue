@@ -16,7 +16,7 @@
 export default {
     data() {
         return {
-            addcoin: "" // v-model
+            addcoin: '', // v-model
         };
     },
     methods: {
@@ -24,16 +24,16 @@ export default {
             // get coin from input
             const coinsToAdd = this.addcoin.toUpperCase();
             if (coinsToAdd.length > 1) {
-                this.$store.commit("addCoins", coinsToAdd);
+                this.$store.commit('addCoins', coinsToAdd);
 
                 // clear input
-                this.addcoin = "";
+                this.addcoin = '';
 
                 // refresh coin list in parent component
                 this.$parent.getCoins();
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

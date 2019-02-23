@@ -1,31 +1,33 @@
 {
   "name": "coinmenu",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Cryptocoins in your menubar",
+  "license": "MIT",
+  "main": "src/electron-main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/RonaldR/CoinMenu.git"
   },
-  "license": "MIT",
   "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build",
+    "test": "vue-cli-service test",
+    "e2e": "vue-cli-service e2e",
+    "lint": "vue-cli-service lint",
+    "e2e:open": "vue-cli-service e2e:open",
+    "make": "electron-forge make",
+    "now-build": "yarn build",
+    "package": "electron-forge package",
     "start": "electron .",
     "start-build": "vue-cli-service build && electron .",
     "start-forge": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test": "vue-cli-service test",
-    "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c",
-    "e2e": "vue-cli-service e2e",
-    "e2e:open": "vue-cli-service e2e:open",
-    "now-build": "yarn build"
+    "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c"
   },
   "dependencies": {
     "date-fns": "^1.30.1",
     "electron-compile": "^6.4.4",
     "menubar": "^5.2.3",
+    "register-service-worker": "^1.5.2",
     "vue": "^2.6.6",
     "vue-analytics": "^5.16.2",
     "vue-clipboard2": "^0.3.0",
@@ -37,6 +39,7 @@
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-e2e-cypress": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-pwa": "^3.4.1",
     "@vue/cli-plugin-unit-jest": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-airbnb": "^3.0.5",
@@ -49,7 +52,6 @@
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.6.6"
   },
-  "main": "src/electron-main.js",
   "browserslist": [
     "> 0.5%",
     "not ie <= 10"

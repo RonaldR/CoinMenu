@@ -1,13 +1,17 @@
 import Vue from 'vue';
-import App from './App.vue';
-
-import router from './router';
-import store from './store';
 
 // 3th party
 import Vue2Filters from 'vue2-filters';
 import VueClipboard from 'vue-clipboard2';
 import VueAnalytics from 'vue-analytics';
+
+import App from './App.vue';
+
+import router from './router';
+import store from './store';
+
+import './registerServiceWorker';
+
 
 Vue.config.productionTip = false;
 
@@ -19,22 +23,22 @@ Vue.use(VueAnalytics, {
     id: 'UA-7382261-5',
     router,
     autoTracking: {
-        exception: true
+        exception: true,
     },
     debug: {
-        enabled: !isProd,
-        sendHitTask: isProd
+    // enabled: !isProd,
+        sendHitTask: isProd,
     },
     set: [
-        { field: 'anonymizeIp', value: true }
-    ]
+        { field: 'anonymizeIp', value: true },
+    ],
 });
 
 window.app = new Vue({
     el: '#app',
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
 });
 
 // TODO:

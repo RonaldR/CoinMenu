@@ -11,19 +11,19 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: Home,
         },
         {
             path: '/about',
             name: 'about',
-            component: About
-        }
+            component: About,
+        },
     ],
     scrollBehavior(to, from, savedPosition) {
-        // scrolls to top on route change
+    // scrolls to top on route change
         if (savedPosition) {
             return savedPosition;
         }
         return { x: 0, y: 0 };
-    }
+    },
 });

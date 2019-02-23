@@ -5,98 +5,83 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        personalCoinList: JSON.parse(localStorage.getItem('personalCoinList'))
+        personalCoinList: JSON.parse(localStorage.getItem('personalCoinList')),
     },
     getters: {
-        getPersonalCoinList: state => state.personalCoinList, // return personalCoinList state
-        getCoinListWithHoldings: state => (
-            coinData // filter the ones in the personal list
-        ) =>
+        // return personalCoinList state
+        getPersonalCoinList: state => state.personalCoinList,
+        getCoinListWithHoldings: state => coinData =>
             coinData.filter(item =>
-                state.personalCoinList.find(coin => {
+                state.personalCoinList.find((coin) => {
                     if (coin && coin.symbol && coin.symbol === item.symbol) {
                         // add holding amount to coin object
+                        // TODO:
+                        // eslint-disable-next-line
                         item.holding = coin.holding;
                         return true;
                     }
-                })
-            ),
-        getHoldingAmount: state => coinSymbol => {
-            const coin = state.personalCoinList.find(
-                coinItem =>
-                    coinItem &&
-                    coinItem.symbol &&
-                    coinItem.symbol === coinSymbol
-            );
-            if (coin) {
-                return coin.holding;
-            }
-        }
+
+                    return false;
+                })),
+        getHoldingAmount: state => (coinSymbol) => {
+            const coin = state.personalCoinList.find(coinItem =>
+                coinItem && coinItem.symbol &&
+                coinItem.symbol === coinSymbol);
+            return coin ? coin.holding : null;
+        },
     },
     mutations: {
         createCoinList: (state, coinList) => {
             // create coin list with objects
-            state.personalCoinList = coinList.map(coin => ({
+            const newState = { ...state };
+            newState.personalCoinList = coinList.map(coin => ({
                 symbol: coin.symbol,
-                holding: null
+                holding: null,
             }));
 
+            // state = newState;
+
             // save to localStorage
-            localStorage.setItem(
-                'personalCoinList',
-                JSON.stringify(state.personalCoinList)
-            );
+            localStorage.setItem('personalCoinList', JSON.stringify(newState.personalCoinList));
         },
         addCoins: (state, coinsToAdd) => {
             // add a coin to the list
-            state.personalCoinList = state.personalCoinList.concat(
-                coinsToAdd
-                    .split(',') // split string to Array
-                    // filter checks if coin is valid and not already in list
-                    .filter(
-                        coin =>
-                            coin &&
+            const newState = { ...state };
+            newState.personalCoinList = newState.personalCoinList.concat(coinsToAdd
+                .split(',') // split string to Array
+            // filter checks if coin is valid and not already in list
+                .filter(coin =>
+                    coin &&
                             coin.length > 2 &&
-                            !state.personalCoinList.find(
-                                item => item && item.symbol === coin
-                            )
-                    )
-                    // maps to object
-                    .map(coin => ({
-                        symbol: coin,
-                        holding: null
-                    }))
-            );
+                            !newState.personalCoinList.find(item => item && item.symbol === coin))
+            // maps to object
+                .map(coin => ({
+                    symbol: coin,
+                    holding: null,
+                })));
 
             // save to localStorage
-            localStorage.setItem(
-                'personalCoinList',
-                JSON.stringify(state.personalCoinList)
-            );
+            localStorage.setItem('personalCoinList', JSON.stringify(newState.personalCoinList));
         },
         removeCoin: (state, symbol) => {
-            state.personalCoinList = state.personalCoinList.filter(
-                coin => coin.symbol !== symbol
-            );
+            const newState = { ...state };
+            newState.personalCoinList = newState.personalCoinList.filter(coin =>
+                coin.symbol !== symbol);
             // save to localStorage
-            localStorage.setItem(
-                'personalCoinList',
-                JSON.stringify(state.personalCoinList)
-            );
+            localStorage.setItem('personalCoinList', JSON.stringify(newState.personalCoinList));
         },
         saveHoldingAmount: (state, obj) => {
-            const coin = state.personalCoinList.find(
-                coinItem => coinItem.symbol === obj.symbol
-            );
-            if (coin) {
-                coin.holding = obj.holdingAmount;
-            }
+            const newState = state.personalCoinList.map((coinItem) => {
+                if (coinItem.symbol === obj.symbol) {
+                    // eslint-disable-next-line
+                    coinItem.holding = obj.holdingAmount;
+                }
+                return coinItem;
+            });
+
             // save to localStorage
-            localStorage.setItem(
-                'personalCoinList',
-                JSON.stringify(state.personalCoinList)
-            );
-        }
+            localStorage.setItem('personalCoinList', JSON.stringify(newState.personalCoinList));
+        },
     },
-    actions: {}
+    actions: {},
 });
