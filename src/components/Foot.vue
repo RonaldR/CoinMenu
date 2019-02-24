@@ -57,8 +57,7 @@ export default {
             })
                 .then(response => response.json())
                 .then((response) => {
-                    this.totalMarketCap =
-                        response.data.quote.USD.total_market_cap;
+                    this.totalMarketCap = response.data.quote.USD.total_market_cap;
                 })
                 .catch((error) => {
                     console.error(error);

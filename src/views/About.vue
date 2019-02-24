@@ -121,9 +121,7 @@ export default {
     mixins: [mixins],
     data() {
         return {
-            // TODO: better way to get version?
-            // eslint-disable-next-line
-            version: require('../../package.json').version,
+            version: process.env.PACKAGE_JSON.version,
         };
     },
     created() {

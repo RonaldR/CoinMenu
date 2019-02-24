@@ -12,14 +12,14 @@
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test",
-    "e2e": "vue-cli-service e2e",
     "lint": "vue-cli-service lint",
+    "e2e": "vue-cli-service e2e",
     "e2e:open": "vue-cli-service e2e:open",
-    "make": "electron-forge make",
     "now-build": "yarn build",
-    "package": "electron-forge package",
     "start": "electron .",
     "start-build": "vue-cli-service build && electron .",
+    "make": "electron-forge make",
+    "package": "electron-forge package",
     "start-forge": "electron-forge start",
     "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c"
   },
@@ -42,19 +42,21 @@
     "@vue/cli-plugin-pwa": "^3.4.1",
     "@vue/cli-plugin-unit-jest": "^3.4.1",
     "@vue/cli-service": "^3.4.1",
-    "@vue/eslint-config-airbnb": "^3.0.5",
+    "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.4",
     "codacy-coverage": "^2.1.0",
     "electron-prebuilt-compile": "1.8.2",
     "node-sass": "^4.11.0",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "2.6.7"
   },
   "browserslist": [
-    "> 0.5%",
-    "not ie <= 11"
+    ">0.5%",
+    ">0.5% in NL",
+    "not ie 11",
+    "not op_mini all"
   ],
   "config": {
     "forge": {

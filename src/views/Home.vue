@@ -89,7 +89,6 @@ export default {
     },
     methods: {
         getCoins() {
-            console.log('getCoins');
             this.loading = true;
 
             let url = `${envUrl()}v1/cryptocurrency/listings/latest?convert=USD`;
@@ -151,7 +150,6 @@ export default {
         },
     },
     mounted() {
-        console.log('mounted');
         this.getCoins();
     },
 };

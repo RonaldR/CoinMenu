@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
     lintOnSave: true,
     publicPath: '',
@@ -8,6 +10,7 @@ module.exports = {
         workboxOptions: {
             runtimeCaching: [
                 {
+                    // eslint-disable-next-line
                     urlPattern: new RegExp('^https:\/\/cors-anywhere\.herokuapp\.com.*'),
                     handler: 'networkFirst',
                     options: {
@@ -17,8 +20,17 @@ module.exports = {
                             statuses: [0, 200],
                         },
                     },
-                }
+                },
             ],
         },
+    },
+    configureWebpack: {
+        plugins: [
+            new webpack.DefinePlugin({
+                'process.env': {
+                    PACKAGE_JSON: JSON.stringify(require('./package.json')),
+                },
+            }),
+        ],
     },
 };
