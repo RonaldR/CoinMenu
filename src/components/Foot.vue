@@ -51,7 +51,6 @@ export default {
 
             fetch(url, {
                 headers: {
-                    origin: 'http://localhost',
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CMC_PRO_API_KEY': apiKey(),
                 },
@@ -62,8 +61,7 @@ export default {
                         response.data.quote.USD.total_market_cap;
                 })
                 .catch((error) => {
-                    console.log(error);
-                    this.totalMarketCap = null; // reset
+                    console.error(error);
                 });
         },
     },

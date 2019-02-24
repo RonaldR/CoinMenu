@@ -89,6 +89,7 @@ export default {
     },
     methods: {
         getCoins() {
+            console.log('getCoins');
             this.loading = true;
 
             let url = `${envUrl()}v1/cryptocurrency/listings/latest?convert=USD`;
@@ -103,56 +104,54 @@ export default {
 
             fetch(url, {
                 headers: {
-                    origin: 'http://localhost',
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CMC_PRO_API_KEY': apiKey(),
                 },
             })
                 .then(response => response.json())
                 .then((response) => {
-                    // TODO: fix this and timeout
-                    this.coins = null; // clear list
+                    this.coinData = response.data;
+                    // data is object, convert to array
+                    this.coinData = Object.values(this.coinData);
+                    // sort on rank.
+                    this.coinData.sort((a, b) => a.cmc_rank - b.cmc_rank);
 
-                    // timeout, because.... ?
-                    setTimeout(() => {
-                        this.coinData = response.data;
-                        // data is object, convert to array
-                        this.coinData = Object.values(this.coinData);
-                        // sort on rank.
-                        this.coinData.sort((a, b) => a.cmc_rank - b.cmc_rank);
+                    if (!personalCoinList || personalCoinList.length < 1) {
+                        this.coins = this.coinData;
 
-                        if (!personalCoinList || personalCoinList.length < 1) {
-                            this.coins = this.coinData;
+                        // If there is no personal coin list yet
+                        // we simply create a personalCoinList from the top 10.
+                        this.$store.commit('createCoinList', this.coins);
+                    } else {
+                        // filter the coins in the personal list
+                        this.reloadCoins();
+                    }
 
-                            // If there is no personal coin list yet
-                            // we simply create a personalCoinList from the top 10.
-                            this.$store.commit('createCoinList', this.coins);
-                        } else {
-                            // filter the coins in the personal list
-                            this.reloadCoins();
-                        }
+                    // update the date
+                    this.refreshDate = format(new Date(), 'DD-MM-YYYY HH:mm:ss');
 
-                        // update the date
-                        this.refreshDate = format(new Date(), 'DD-MM-YYYY HH:mm:ss');
-
-                        this.loading = false;
-                    });
+                    this.loading = false;
                 })
                 .catch((error) => {
-                    console.log(error);
-                    this.coins = null; // reset on error
+                    console.error(error);
                     this.loading = false;
                 });
         },
         reloadCoins() {
+            // clear list
+            this.coins = null;
+            // fill list
             this.coins = this.$store.getters.getCoinListWithHoldings(this.coinData);
         },
         toggleEditMode() {
             this.editMode = !this.editMode;
-            this.getCoins();
+            if (!this.editMode) {
+                this.getCoins();
+            }
         },
     },
     mounted() {
+        console.log('mounted');
         this.getCoins();
     },
 };

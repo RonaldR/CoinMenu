@@ -30,7 +30,7 @@ export default {
                 this.addcoin = '';
 
                 // refresh coin list in parent component
-                this.$parent.getCoins();
+                this.$parent.reloadCoins();
             }
         },
     },
