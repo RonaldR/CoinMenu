@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="shortcut icon" href="<%= webpackConfig.output.publicPath %>favicon.ico">
-    <title>CoinMenu</title>
-    <meta name="description" content="CoinMenu - also in the browser and as Progressive Web App">
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="<%= webpackConfig.output.publicPath %>favicon.ico"
+        />
+        <title>CoinMenu</title>
+        <meta
+            name="description"
+            content="CoinMenu - also in the browser and as Progressive Web App"
+        />
+    </head>
+    <body>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
 
-    <script>
-      // create easy access to electron
-    //   let electron = require('electron');
+        <script>
+            // create easy access to electron
+            let electron = require('electron');
 
-    //   window.electronRemote = electron.remote; // used for resizing the window in about.vue
-    //   window.electron = electron; // used for focussed event
+            window.electronRemote = electron.remote; // used for resizing the window in about.vue
+            window.electron = electron; // used for focussed event
 
-      // focussed event listener, to refresh on focus.
-    //   window.electron.ipcRenderer.on('focussed', function(event, message) {
-    //     window.app.$children[0].$children[0].getCoins();
-    //   });
-    </script>
-  </body>
+            // focussed event listener, to refresh on focus.
+            //   window.electron.ipcRenderer.on('focussed', function(event, message) {
+            //     window.app.$children[0].$children[0].getCoins();
+            //   });
+        </script>
+    </body>
 </html>

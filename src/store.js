@@ -5,33 +5,35 @@ Vue.use(Vuex);
 
 /* eslint-disable */
 export default new Vuex.Store({
-    state: {
-        personalCoinList: JSON.parse(localStorage.getItem('personalCoinList')),
+    state() {
+        const personalCoinListLS = localStorage.getItem('personalCoinList');
+        let personalCoinList = null;
+        if (personalCoinListLS && personalCoinListLS !== 'undefined') {
+            personalCoinList = JSON.parse(personalCoinListLS);
+        }
+        return {
+            personalCoinList,
+        };
     },
     getters: {
         // return personalCoinList state
         getPersonalCoinList: state => state.personalCoinList,
+        // filter the coin data from api with personal list and add holding amount
         getCoinListWithHoldings: state => coinData =>
             coinData.filter(item =>
-                state.personalCoinList.find((coin) => {
-                    if (coin && coin.symbol && coin.symbol === item.symbol) {
-                        // add holding amount to coin object
-                        // TODO:
-                        // eslint-disable-next-line
-                        item.holding = coin.holding;
-                        return true;
-                    }
-
-                    return false;
-                })),
-        getHoldingAmount: state => (coinSymbol) => {
+                state.personalCoinList.find(
+                    coin => coin && coin.symbol && coin.symbol === item.symbol
+                ),
+            ),
+        // get holding amount per coin
+        getHoldingAmount: state => coinSymbol => {
             if (state.personalCoinList) {
-                const coin = state.personalCoinList.find(coinItem =>
-                    coinItem && coinItem.symbol &&
-                    coinItem.symbol === coinSymbol);
+                const coin = state.personalCoinList.find(
+                    coinItem => coinItem && coinItem.symbol && coinItem.symbol === coinSymbol,
+                );
                 return coin ? coin.holding : null;
             }
-            
+
             return null;
         },
     },
@@ -50,34 +52,37 @@ export default new Vuex.Store({
         },
         addCoins: (state, coinsToAdd) => {
             // add a coin to the list
-            state.personalCoinList = state.personalCoinList.concat(coinsToAdd
-                .split(',') // split string to Array
-            // filter checks if coin is valid and not already in list
-                .filter(coin =>
-                    coin &&
+            state.personalCoinList = state.personalCoinList.concat(
+                coinsToAdd
+                    .split(',') // split string to Array
+                    // filter checks if coin is valid and not already in list
+                    .filter(
+                        coin =>
+                            coin &&
                             coin.length > 2 &&
-                            !state.personalCoinList.find(item => item && item.symbol === coin))
-            // maps to object
-                .map(coin => ({
-                    symbol: coin,
-                    holding: null,
-                })));
+                            !state.personalCoinList.find(item => item && item.symbol === coin),
+                    )
+                    // maps to object
+                    .map(coin => ({
+                        symbol: coin,
+                        holding: null,
+                    })),
+            );
 
             // save to localStorage
             localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
         },
         removeCoin: (state, symbol) => {
-            state.personalCoinList = state.personalCoinList.filter(coin =>
-                coin.symbol !== symbol);
+            state.personalCoinList = state.personalCoinList.filter(coin => coin.symbol !== symbol);
             // save to localStorage
             localStorage.setItem('personalCoinList', JSON.stringify(state.personalCoinList));
         },
         saveHoldingAmount: (state, obj) => {
-            state = state.personalCoinList.map((coinItem) => {
+            state.personalCoinList = state.personalCoinList.map(coinItem => {
                 if (coinItem.symbol === obj.symbol) {
-                    // eslint-disable-next-line
                     coinItem.holding = obj.holdingAmount;
                 }
+
                 return coinItem;
             });
 
