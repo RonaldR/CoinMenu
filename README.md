@@ -5,11 +5,11 @@
 ![Codacy Badge](https://api.codacy.com/project/badge/Grade/fd38be335a554ce08a6752dab1100cd3)
 
 
-With this menubar app you can keep track of your Bitcoin (BTC), Ether (ETH), LiteCoin (LTC), SmartCash (Smart) and all other coins.
+With this menubar app you can keep track of your Bitcoin (BTC), Ethereum (ETH), LiteCoin (LTC), NEO and all other coins.
 
 <img src="https://raw.githubusercontent.com/RonaldR/CoinMenu/master/screenshot.png" width="320">
 
-Working web version:
+Working web version, with PWA capabilities:
 https://coinmenu.now.sh
 
 
