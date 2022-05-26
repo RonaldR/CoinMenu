@@ -13,14 +13,6 @@ Working web version, with PWA capabilities:
 https://coinmenu.now.sh
 
 
-If you like the app you can show your appreciation by leaving a star on the github repo or donating some crypto 😉🚀   
-
-
-- BTC `13xB6FVUfDRJfDuUCqWnZzaStaMXSbiHgp`
-- ETH `0xf774c2148235d20FD5E6c22b86BBd78A1f5E872F`
-- LTC `LM2GNo5koDWfJAuidw8dXCLuTEoHLhMQhQ`
-
-
 ## Contribute
 
 You can also contribute to the project by doing a pull request. Please do.  
