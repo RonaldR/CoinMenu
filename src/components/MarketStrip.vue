@@ -39,7 +39,7 @@ const inCurrency = usd => convert(usd, 'USD', props.currency, props.rates);
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    margin: 0 0 14px;
+    margin: 14px 0;
     padding: 0 2px;
 }
 

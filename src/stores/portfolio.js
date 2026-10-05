@@ -5,6 +5,9 @@ import { rates, tickerFor } from './market';
 import { settings } from './settings';
 import { coins } from './watchlist';
 
+/** Whether any amounts are entered, known straight away rather than once prices arrive. */
+export const hasHoldings = computed(() => coins.value.some(coin => coin.holding > 0));
+
 /** Watchlist coins paired with their live tickers, in the user's own order. */
 export const entries = computed(() => coins.value.map(coin => ({ coin, ticker: tickerFor(coin) })));
 

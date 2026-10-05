@@ -97,7 +97,7 @@
             <p class="footnote">Everything stays on this device. CoinMenu has no account and no tracking.</p>
         </section>
 
-        <section class="group" aria-labelledby="keys-title">
+        <section class="group shortcuts-group" aria-labelledby="keys-title">
             <h2 id="keys-title" class="eyebrow">Keyboard shortcuts</h2>
             <div class="card shortcuts">
                 <div v-for="shortcut in SHORTCUTS" :key="shortcut.label">
@@ -174,9 +174,9 @@ import { CURRENCIES, settings } from '@/stores/settings';
 import { coins } from '@/stores/watchlist';
 
 const THEME_OPTIONS = [
-    { value: 'system', label: 'Auto' },
     { value: 'dark', label: 'Dark' },
     { value: 'light', label: 'Light' },
+    { value: 'system', label: 'Auto' },
 ];
 const TRAY_OPTIONS = [
     { value: 'icon', label: 'Nothing' },
@@ -388,6 +388,13 @@ h1 {
 .keys {
     display: flex;
     gap: 3px;
+}
+
+/* Phones and tablets without a keyboard have no use for shortcuts. */
+@media (hover: none) and (pointer: coarse) {
+    .shortcuts-group {
+        display: none;
+    }
 }
 
 .about-card {

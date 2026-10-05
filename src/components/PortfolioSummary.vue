@@ -1,51 +1,39 @@
 <template>
     <section class="summary" aria-label="Portfolio summary">
-        <template v-if="summary.holdings">
-            <div class="figures">
-                <div>
-                    <p class="eyebrow">Portfolio value</p>
-                    <div class="balance">{{ privacy ? MASK : formatMoney(summary.value, currency) }}</div>
-                    <div class="delta" :class="tone(summary.change)">
-                        <AppIcon :name="summary.change >= 0 ? 'arrowUp' : 'arrowDown'" :size="12" :stroke-width="2.5" />
-                        <span v-if="!privacy">{{ formatMoney(Math.abs(summary.change), currency) }}</span>
-                        <span>({{ formatPercent(summary.changePercent) }})</span>
-                        <span class="muted">{{ PERIOD_LABELS[period] }}</span>
-                    </div>
-                </div>
-                <div v-if="summary.profit !== null" class="profit">
-                    <p class="eyebrow">Profit / loss</p>
-                    <strong :class="tone(summary.profit)">{{ privacy ? MASK : formatMoney(summary.profit, currency, { signed: true }) }}</strong>
-                    <span :class="tone(summary.profit)">{{ formatPercent(summary.profitPercent) }}</span>
-                </div>
-            </div>
-
-            <div class="allocation">
-                <div class="bar" role="img" :aria-label="allocationLabel">
-                    <span
-                        v-for="slice in allocation"
-                        :key="slice.key"
-                        :style="{ flexGrow: slice.share, background: slotColor(slice) }"
-                    ></span>
-                </div>
-                <ul class="legend">
-                    <li v-for="slice in allocation" :key="slice.key">
-                        <i :style="{ background: slotColor(slice) }"></i>
-                        {{ slice.symbol }}
-                        <span>{{ formatShare(slice.share) }}</span>
-                    </li>
-                </ul>
-            </div>
-        </template>
-
-        <div v-else class="empty">
+        <div class="figures">
             <div>
-                <p class="eyebrow">Your portfolio</p>
-                <p class="empty-title">Track what your crypto is worth</p>
-                <p class="empty-copy">Enter the amounts you hold to see your total value, daily change and allocation.</p>
+                <p class="eyebrow">Portfolio value</p>
+                <div class="balance">{{ !priced ? '—' : privacy ? MASK : formatMoney(summary.value, currency) }}</div>
+                <div v-if="priced" class="delta" :class="tone(summary.change)">
+                    <AppIcon :name="summary.change >= 0 ? 'arrowUp' : 'arrowDown'" :size="12" :stroke-width="2.5" />
+                    <span v-if="!privacy">{{ formatMoney(Math.abs(summary.change), currency) }}</span>
+                    <span>({{ formatPercent(summary.changePercent) }})</span>
+                    <span class="muted">{{ PERIOD_LABELS[period] }}</span>
+                </div>
+                <div v-else class="delta muted">Waiting for prices…</div>
             </div>
-            <button type="button" class="button primary" @click="emit('add-holdings')">
-                <AppIcon name="pencil" :size="13" /> Add holdings
-            </button>
+            <div v-if="summary.profit !== null" class="profit">
+                <p class="eyebrow">Profit / loss</p>
+                <strong :class="tone(summary.profit)">{{ privacy ? MASK : formatMoney(summary.profit, currency, { signed: true }) }}</strong>
+                <span :class="tone(summary.profit)">{{ formatPercent(summary.profitPercent) }}</span>
+            </div>
+        </div>
+
+        <div v-if="allocation.length" class="allocation">
+            <div class="bar" role="img" :aria-label="allocationLabel">
+                <span
+                    v-for="slice in allocation"
+                    :key="slice.key"
+                    :style="{ flexGrow: slice.share, background: slotColor(slice) }"
+                ></span>
+            </div>
+            <ul class="legend">
+                <li v-for="slice in allocation" :key="slice.key">
+                    <i :style="{ background: slotColor(slice) }"></i>
+                    {{ slice.symbol }}
+                    <span>{{ formatShare(slice.share) }}</span>
+                </li>
+            </ul>
         </div>
     </section>
 </template>
@@ -63,10 +51,10 @@ const props = defineProps({
     period: { type: String, required: true },
     privacy: { type: Boolean, default: false },
 });
-const emit = defineEmits(['add-holdings']);
-
 const PERIOD_LABELS = { '1h': 'past hour', '24h': 'past 24h', '7d': 'past 7 days' };
 
+// Holdings are known before prices load; until then there is no value to show.
+const priced = computed(() => props.summary.holdings > 0);
 const tone = value => (value >= 0 ? 'up' : 'down');
 const slotColor = slice => `var(--slot-${slice.slot ?? 'other'})`;
 const formatShare = share => `${share < 1 ? share.toFixed(1) : Math.round(share)}%`;
@@ -182,25 +170,4 @@ const allocationLabel = computed(() => `Allocation: ${props.allocation
     font-weight: 500;
 }
 
-.empty {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-}
-
-.empty-title {
-    margin: 7px 0 4px;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
-
-.empty-copy {
-    max-width: 300px;
-    margin: 0;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.45;
-}
 </style>

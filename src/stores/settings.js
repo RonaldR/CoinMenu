@@ -5,15 +5,20 @@ import { readJson, writeJson } from '@/lib/storage';
 
 const STORAGE_KEY = 'coinmenu-settings';
 
+// Version 2 made dark the default theme. Version 1 defaulted to "system", and a saved "system"
+// cannot be told apart from a deliberate choice, so it moves to the new default once.
+const VERSION = 2;
+
 export const CURRENCIES = ['USD', 'EUR'];
 export const PERIODS = ['1h', '24h', '7d'];
-export const THEMES = ['system', 'dark', 'light'];
+export const THEMES = ['dark', 'light', 'system'];
 export const TRAY_MODES = ['icon', 'value', 'change', 'coin'];
 
 const DEFAULTS = Object.freeze({
+    version: VERSION,
     currency: 'USD',
     period: '24h',
-    theme: 'system',
+    theme: 'dark',
     privacy: false,
     trayMode: 'icon',
     trayCoinId: 'btc-bitcoin',
@@ -25,10 +30,12 @@ const oneOf = (options, value, fallback) => (options.includes(value) ? value : f
 
 export function sanitizeSettings(saved) {
     const value = saved && typeof saved === 'object' ? saved : {};
+    const theme = value.version !== VERSION && value.theme === 'system' ? DEFAULTS.theme : value.theme;
     return {
+        version: VERSION,
         currency: oneOf(CURRENCIES, value.currency, DEFAULTS.currency),
         period: oneOf(PERIODS, value.period, DEFAULTS.period),
-        theme: oneOf(THEMES, value.theme, DEFAULTS.theme),
+        theme: oneOf(THEMES, theme, DEFAULTS.theme),
         privacy: value.privacy === true,
         trayMode: oneOf(TRAY_MODES, value.trayMode, DEFAULTS.trayMode),
         trayCoinId: typeof value.trayCoinId === 'string' ? value.trayCoinId : DEFAULTS.trayCoinId,

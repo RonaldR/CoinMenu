@@ -8,6 +8,13 @@ describe('sanitizeSettings', () => {
             .toMatchObject({ currency: 'EUR', period: '24h', theme: 'light', privacy: false, sortKey: 'price' });
         expect(sanitizeSettings(null).currency).toBe('USD');
     });
+
+    it('defaults to dark, moving the old implicit "system" default over once', () => {
+        expect(sanitizeSettings(null).theme).toBe('dark');
+        expect(sanitizeSettings({ theme: 'system' }).theme).toBe('dark');
+        expect(sanitizeSettings({ theme: 'light' }).theme).toBe('light');
+        expect(sanitizeSettings({ version: 2, theme: 'system' }).theme).toBe('system');
+    });
 });
 
 describe('toggleSort', () => {

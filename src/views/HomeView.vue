@@ -40,12 +40,12 @@
         </div>
 
         <PortfolioSummary
+            v-if="hasHoldings"
             :summary="summary"
             :allocation="allocation"
             :currency="settings.currency"
             :period="settings.period"
             :privacy="settings.privacy"
-            @add-holdings="startEditingHoldings"
         />
 
         <MarketStrip :global="market.global" :currency="settings.currency" :rates="rates" />
@@ -119,6 +119,8 @@
             </CoinTable>
         </section>
 
+        <PortfolioIntro v-if="!hasHoldings && coins.length && !editing" @add-holdings="startEditingHoldings" />
+
         <AppFooter />
 
         <Transition name="toast">
@@ -139,11 +141,12 @@ import AppIcon from '@/components/AppIcon.vue';
 import CoinSearch from '@/components/CoinSearch.vue';
 import CoinTable from '@/components/CoinTable.vue';
 import MarketStrip from '@/components/MarketStrip.vue';
+import PortfolioIntro from '@/components/PortfolioIntro.vue';
 import PortfolioSummary from '@/components/PortfolioSummary.vue';
 import SegmentedControl from '@/components/SegmentedControl.vue';
 import { useHotkeys } from '@/composables/useHotkeys';
 import { ensureTicker, market, rates, refreshNow } from '@/stores/market';
-import { allocation, sortedEntries, summary } from '@/stores/portfolio';
+import { allocation, hasHoldings, sortedEntries, summary } from '@/stores/portfolio';
 import { CURRENCIES, PERIODS, settings } from '@/stores/settings';
 import { addCoin, coins, insertCoin, removeCoin } from '@/stores/watchlist';
 
