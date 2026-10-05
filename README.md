@@ -51,7 +51,7 @@ npm version patch           # or minor / major; updates package.json and creates
 git push --follow-tags
 ```
 
-The workflow lints, tests, and builds, then publishes a GitHub release with a universal macOS `.dmg` (Apple Silicon and Intel), a Windows installer, and a Linux AppImage. Run the workflow by hand from the Actions tab to build installers without publishing a release.
+The workflow lints, tests, and builds, then publishes a GitHub release with macOS `.dmg` files for Apple Silicon (`arm64`) and Intel (`x64`), a Windows installer, and a Linux AppImage. Separate Mac builds keep each one about half the size of a universal app, which would carry Chromium twice. Run the workflow by hand from the Actions tab to build installers without publishing a release.
 
 The installers are not signed with an Apple or Windows certificate. The macOS app has a free ad-hoc signature, so people open it the first time from **System Settings → Privacy & Security → Open Anyway**, and Windows asks them to confirm under **More info → Run anyway**.
 

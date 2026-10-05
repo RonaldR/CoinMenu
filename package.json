@@ -66,7 +66,8 @@
         {
           "target": "dmg",
           "arch": [
-            "universal"
+            "arm64",
+            "x64"
           ]
         }
       ],
@@ -74,7 +75,8 @@
       "hardenedRuntime": false,
       "extendInfo": {
         "LSUIElement": true
-      }
+      },
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
     },
     "win": {
       "target": [
