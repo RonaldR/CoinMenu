@@ -1,106 +1,92 @@
 {
   "name": "coinmenu",
-  "version": "0.5.1",
-  "description": "Cryptocoins in your menubar",
+  "version": "1.0.0",
+  "description": "A tiny cryptocurrency portfolio for your menu bar",
+  "author": "Ronald Runia",
   "license": "MIT",
-  "main": "src/electron-main.js",
+  "type": "module",
+  "main": "electron/main.cjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/RonaldR/CoinMenu.git"
   },
   "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "test": "vue-cli-service test",
-    "lint": "vue-cli-service lint",
-    "e2e": "vue-cli-service e2e",
-    "e2e:open": "vue-cli-service e2e:open",
-    "now-build": "yarn build",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "start": "electron .",
-    "start-build": "vue-cli-service build && electron .",
-    "make": "electron-forge make",
-    "package": "electron-forge package",
-    "start-forge": "electron-forge start",
-    "test-with-coverage": "vue-cli-service test --coverage && cat ./coverage/lcov.info | codacy-coverage --token aa57380e613d4538b5b874d69de9476c"
+    "electron:dev": "concurrently -k \"vite\" \"wait-on http://127.0.0.1:5173 && cross-env VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron .\"",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run lint && npm test && npm run build",
+    "dist": "npm run build && electron-builder",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:linux": "npm run build && electron-builder --linux"
   },
   "dependencies": {
-    "date-fns": "^1.30.1",
-    "electron-compile": "^6.4.4",
-    "menubar": "^5.2.3",
-    "register-service-worker": "^1.5.2",
-    "vue": "2.6.7",
-    "vue-analytics": "^5.16.2",
-    "vue-clipboard2": "^0.3.0",
-    "vue-router": "^3.0.2",
-    "vue2-filters": "^0.4.1",
-    "vuex": "^3.1.0"
+    "menubar": "^9.5.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.1",
-    "@vue/cli-plugin-e2e-cypress": "^3.4.1",
-    "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-plugin-pwa": "^3.4.1",
-    "@vue/cli-plugin-unit-jest": "^3.4.1",
-    "@vue/cli-service": "^3.4.1",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.4",
-    "codacy-coverage": "^2.1.0",
-    "electron-prebuilt-compile": "1.8.2",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "2.6.7"
+    "@eslint/js": "^10.0.1",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.7.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.13.0",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3",
+    "vue": "^3.5.43",
+    "vue-router": "^4.6.3",
+    "wait-on": "^8.0.4"
   },
-  "browserslist": [
-    ">0.5%",
-    ">0.5% in NL",
-    "not ie 11",
-    "not op_mini all"
-  ],
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "dmg"
-        ],
-        "linux": [
-          "deb"
-        ]
-      },
-      "electronPackagerConfig": {
-        "icon": "./src/assets/icons/icon.icns"
-      },
-      "electronWinstallerConfig": {
-        "name": "CoinMenu",
-        "appDirectory": "./",
-        "authors": "Ronald Runia",
-        "iconUrl": "icon.ico",
-        "setupIcon": "icon.ico"
-      },
-      "electronInstallerDebian": {
-        "dest": "out/installers/",
-        "icon": "src/assets/icons/icon.icns",
-        "categories": [
-          "Utility"
-        ],
-        "lintianOverrides": [
-          "changelog-file-missing-in-native-package"
-        ]
-      },
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "RonaldR",
-        "name": "CoinMenu",
-        "prerelease": true,
-        "draft": false
-      },
-      "windowsStoreConfig": {
-        "packageName": ""
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.8.0"
+  },
+  "build": {
+    "appId": "com.ronaldrunia.coinmenu",
+    "productName": "CoinMenu",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.finance",
+      "icon": "electron/assets/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "identity": "-",
+      "hardenedRuntime": false,
+      "extendInfo": {
+        "LSUIElement": true
       }
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "${productName}-${version}-setup.${ext}"
+    },
+    "linux": {
+      "category": "Office;Finance;",
+      "target": [
+        "AppImage"
+      ]
     }
   }
 }

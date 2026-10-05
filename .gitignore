@@ -1,22 +1,21 @@
 .DS_Store
 node_modules
 /dist
-out
+/out
+/release
 
-# local env files
+# Local environment files
 .env.local
 .env.*.local
 
-# Log files
+# Logs and reports
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+coverage
 
-# Editor directories and files
+# Editors
 .idea
 .vscode
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-coverage
