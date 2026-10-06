@@ -53,6 +53,16 @@ const inCurrency = usd => convert(usd, 'USD', props.currency, props.rates);
 dt {
     color: var(--muted);
     font-size: 11px;
+    white-space: nowrap;
+}
+
+/* Phones: each label above its figure, so all three fit on one line. */
+@media (max-width: 480px) {
+    .market-strip > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
 }
 
 dd {

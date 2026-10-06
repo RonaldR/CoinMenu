@@ -53,7 +53,7 @@
         <section aria-labelledby="watchlist-title">
             <div class="list-head">
                 <h2 id="watchlist-title">Watchlist <span>{{ coins.length }}</span></h2>
-                <div class="toolbar">
+                <div class="toolbar list-tools">
                     <label class="filter">
                         <AppIcon name="search" :size="13" />
                         <input
@@ -66,6 +66,8 @@
                         >
                     </label>
                     <SegmentedControl v-model="settings.period" :options="PERIOD_OPTIONS" label="Change period" small />
+                </div>
+                <div class="toolbar list-actions">
                     <button
                         type="button"
                         class="icon-button"
@@ -267,13 +269,14 @@ onBeforeUnmount(() => clearTimeout(undoTimer));
     color: var(--accent);
     font-size: 12px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .list-head {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    gap: 6px;
     margin-bottom: 8px;
 }
 
@@ -317,11 +320,40 @@ h2 span {
     outline: none;
     background: none;
     color: var(--text);
-    font-size: 12px;
+    font-size: var(--field-size);
 }
 
 .filter input::placeholder {
     color: var(--faint);
+}
+
+/* Phones: title and buttons on top, a full-width filter with the period underneath. */
+@media (max-width: 480px) {
+    .list-head {
+        grid-template-areas:
+            "title actions"
+            "tools tools";
+        grid-template-columns: minmax(0, 1fr) auto;
+        row-gap: 10px;
+    }
+
+    h2 {
+        grid-area: title;
+    }
+
+    .list-actions {
+        grid-area: actions;
+    }
+
+    .list-tools {
+        grid-area: tools;
+    }
+
+    .filter,
+    .filter:focus-within {
+        width: auto;
+        flex: 1;
+    }
 }
 
 .edit-hint {

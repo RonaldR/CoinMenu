@@ -293,10 +293,20 @@ h1 {
 .row {
     display: flex;
     min-height: 54px;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 10px 16px;
     padding: 10px 0;
+}
+
+/* Rather than squeezing the description, wide controls move below it, still on the right. */
+.row > div:first-child {
+    flex: 1 1 160px;
+}
+
+.row > :last-child {
+    margin-left: auto;
 }
 
 .row + .row {
@@ -366,6 +376,7 @@ h1 {
     margin: 8px 2px 0;
     color: var(--faint);
     font-size: 11px;
+    text-wrap: pretty;
 }
 
 .shortcuts {
@@ -388,6 +399,12 @@ h1 {
 .keys {
     display: flex;
     gap: 3px;
+}
+
+@media (max-width: 480px) {
+    .shortcuts {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Phones and tablets without a keyboard have no use for shortcuts. */
@@ -425,8 +442,10 @@ h1 {
 }
 
 .about-head div > span {
+    display: block;
     color: var(--muted);
     font-size: 12px;
+    text-wrap: pretty;
 }
 
 .about-card p {
@@ -434,12 +453,20 @@ h1 {
     color: var(--text-2);
     font-size: 12px;
     line-height: 1.55;
+    text-wrap: pretty;
 }
 
 .links {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+}
+
+/* Phones: the buttons share each line, so a wrapped one does not dangle on its own. */
+@media (max-width: 480px) {
+    .links .button {
+        flex: 1 1 auto;
+    }
 }
 
 .heart {

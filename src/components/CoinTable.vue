@@ -165,6 +165,30 @@ th:last-child {
     text-align: right;
 }
 
+/*
+ * Phones drop the sparkline and size the figures to their content instead of a fixed share,
+ * so amounts never run into each other; the coin column gets whatever is left.
+ */
+@media (max-width: 480px) {
+    .coin-table {
+        table-layout: auto;
+    }
+
+    .col-chart {
+        display: none;
+    }
+
+    .col-coin {
+        width: 100%;
+    }
+
+    .col-holding,
+    .col-price,
+    .col-change {
+        width: auto;
+    }
+}
+
 .sort {
     display: inline-flex;
     align-items: center;

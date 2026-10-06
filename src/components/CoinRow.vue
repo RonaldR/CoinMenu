@@ -257,4 +257,23 @@ a.name:hover {
 .remove:hover:not(:disabled) {
     color: var(--down);
 }
+
+/* Phones: see CoinTable. A zero max-width lets long coin names shrink and truncate. */
+@media (max-width: 480px) {
+    .col-chart {
+        display: none;
+    }
+
+    .col-coin {
+        max-width: 0;
+    }
+
+    .numeric {
+        padding-left: 8px;
+    }
+
+    .holding-input {
+        min-width: 84px;
+    }
+}
 </style>

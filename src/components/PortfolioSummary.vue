@@ -79,9 +79,10 @@ const allocationLabel = computed(() => `Allocation: ${props.allocation
 
 .figures {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px 16px;
 }
 
 .balance {
@@ -105,10 +106,12 @@ const allocationLabel = computed(() => `Allocation: ${props.allocation
     font-weight: 500;
 }
 
+/* Large balances push it onto its own line, still on the right. */
 .profit {
     display: grid;
     justify-items: end;
     gap: 3px;
+    margin-left: auto;
     text-align: right;
 }
 

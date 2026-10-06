@@ -43,6 +43,14 @@
     --radius-l: 14px;
     --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
     --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --field-size: 12px;
+}
+
+/* iOS zooms in on any focused field with text under 16px, and stays zoomed in afterwards. */
+@media (pointer: coarse) {
+    :root {
+        --field-size: 16px;
+    }
 }
 
 :root[data-theme="light"] {
@@ -97,7 +105,6 @@ body {
 }
 
 body {
-    min-width: 400px;
     background: var(--bg);
     color: var(--text);
     font-family: var(--font);
@@ -263,7 +270,7 @@ a {
     border-radius: 8px;
     outline: none;
     background: var(--surface);
-    font-size: 12px;
+    font-size: var(--field-size);
     font-variant-numeric: tabular-nums;
     transition: border-color 0.15s, box-shadow 0.15s;
 }

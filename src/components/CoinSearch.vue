@@ -163,7 +163,7 @@ input {
     outline: none;
     background: transparent;
     color: var(--text);
-    font-size: 12px;
+    font-size: var(--field-size);
 }
 
 input::placeholder {
